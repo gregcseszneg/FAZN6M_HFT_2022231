@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FAZN6M_HFT_2022231.Models
 {
-    internal class RecordLabel
+    public class RecordLabel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
