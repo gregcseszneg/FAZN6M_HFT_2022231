@@ -8,5 +8,6 @@ namespace FAZN6M_HFT_2022231.Repository
 {
     internal class MusicDbContext
     {
+
     }
 }
