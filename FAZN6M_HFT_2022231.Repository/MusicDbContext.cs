@@ -15,6 +15,12 @@ namespace FAZN6M_HFT_2022231.Repository
         public DbSet<Track> tracks { get; set; }
         public DbSet<RecordLabel> recordlabels { get; set; }
 
-        
+        public MusicDbContext()
+        {
+            this.Database.EnsureCreated();
+        }
+
+
+
     }
 }
