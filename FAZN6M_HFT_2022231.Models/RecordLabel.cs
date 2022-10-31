@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,5 +22,19 @@ namespace FAZN6M_HFT_2022231.Models
 
         public string Country { get; set; }
         public string Headquarters { get; set; }
+
+        public RecordLabel()
+        {
+
+        }
+
+        public RecordLabel(string line)
+        {
+            string[] split = line.Split('#');
+            Name = split[0];
+            YearOfFoundation = DateTime.Parse(split[1]);
+            Country = split[2];
+            Headquarters = split[3];
+        }
     }
 }

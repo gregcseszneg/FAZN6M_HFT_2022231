@@ -21,5 +21,22 @@ namespace FAZN6M_HFT_2022231.Models
         [ForeignKey(nameof(RecordLabel))]
         public int RecordLabelId { get; set; }
 
+        public Musician()
+        {
+
+        }
+
+        public Musician(string line)
+        {
+            string[] split = line.Split('#');
+            Name = split[0];
+            DateOfBirth = DateTime.Parse(split[1]);
+            HomeTown = split[2];
+            Country = split[3];
+            Age = int.Parse(split[4]);
+            Gender = split[5];
+            RecordLabelId= int.Parse(split[6]);
+        }
+
     }
 }
