@@ -1,4 +1,5 @@
 ﻿using Arch.EntityFrameworkCore;
+using Castle.DynamicProxy.Contributors;
 using FAZN6M_HFT_2022231.Models;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,14 @@ namespace FAZN6M_HFT_2022231.Repository
             this.Database.EnsureCreated();
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
 
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
 
     }
 }
