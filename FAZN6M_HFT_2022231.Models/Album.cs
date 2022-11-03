@@ -34,10 +34,11 @@ namespace FAZN6M_HFT_2022231.Models
         public Album(string line)
         {
             string[] split = line.Split('#');
-            Name = split[0];
-            YearOfRelease = DateTime.Parse(split[1]);
-            MusicianId = int.Parse(split[2]);
-            TrackId=int.Parse(split[3]);
+            AlbumId = int.Parse(split[0]);
+            Name = split[1];
+            YearOfRelease = DateTime.Parse(split[2]);
+            MusicianId = int.Parse(split[3]);
+            TrackId=int.Parse(split[4]);
         }
         public virtual Musician Musician { get; set; }
     }

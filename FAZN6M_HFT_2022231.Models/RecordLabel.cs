@@ -31,10 +31,11 @@ namespace FAZN6M_HFT_2022231.Models
         public RecordLabel(string line)
         {
             string[] split = line.Split('#');
-            Name = split[0];
-            YearOfFoundation = DateTime.Parse(split[1]);
-            Country = split[2];
-            Headquarters = split[3];
+            RecordLabelId = int.Parse(split[0]);
+            Name = split[1];
+            YearOfFoundation = DateTime.Parse(split[2]);
+            Country = split[3];
+            Headquarters = split[4];
         }
 
         public virtual ICollection<Musician> Musicians { get; set; }

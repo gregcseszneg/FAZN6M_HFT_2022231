@@ -9,7 +9,7 @@ namespace FAZN6M_HFT_2022231.Models
     {
         [Key]
         [Required]
-        public int MuscicianId { get; set; }
+        public int MusicianId { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
@@ -31,15 +31,16 @@ namespace FAZN6M_HFT_2022231.Models
         public Musician(string line)
         {
             string[] split = line.Split('#');
-            Name = split[0];
-            DateOfBirth = DateTime.Parse(split[1]);
-            HomeTown = split[2];
-            Country = split[3];
+            MusicianId = int.Parse(split[0]);
+            Name = split[1];
+            DateOfBirth = DateTime.Parse(split[2]);
+            HomeTown = split[3];
+            Country = split[4];
             Age = DateTime.Today.Year - DateOfBirth.Year;
-            Gender = split[4];
-            if (split[5]!="")
+            Gender = split[5];
+            if (split[6]!="")
             {
-                RecordLabelId = int.Parse(split[5]);
+                RecordLabelId = int.Parse(split[6]);
             }
         }
         public virtual RecordLabel RecordLabel { get; set; }
