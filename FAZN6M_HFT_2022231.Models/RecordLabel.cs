@@ -18,7 +18,7 @@ namespace FAZN6M_HFT_2022231.Models
         [Required]
         public string Name { get; set; }
 
-        public DateTime YearOfFoundation { get; set; }
+        public int YearOfFoundation { get; set; }
 
         public string Country { get; set; }
         public string Headquarters { get; set; }
@@ -33,7 +33,7 @@ namespace FAZN6M_HFT_2022231.Models
             string[] split = line.Split('#');
             RecordLabelId = int.Parse(split[0]);
             Name = split[1];
-            YearOfFoundation = DateTime.Parse(split[2]);
+            YearOfFoundation = int.Parse(split[2]);
             Country = split[3];
             Headquarters = split[4];
         }
