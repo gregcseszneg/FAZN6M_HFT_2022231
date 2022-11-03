@@ -12,7 +12,7 @@ namespace FAZN6M_HFT_2022231.Models
     public class RecordLabel
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Required]  
         public int RecordLabelId { get; set; }
 
         [Required]

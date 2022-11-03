@@ -12,7 +12,7 @@ namespace FAZN6M_HFT_2022231.Models
     public class Track
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Required]
         public int TrackId { get; set; }
 
         [Required]

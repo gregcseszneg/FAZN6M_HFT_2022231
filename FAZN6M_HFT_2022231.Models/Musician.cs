@@ -8,7 +8,7 @@ namespace FAZN6M_HFT_2022231.Models
     public class Musician
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Required]
         public int MuscicianId { get; set; }
         [Required]
         public string Name { get; set; }
@@ -35,9 +35,12 @@ namespace FAZN6M_HFT_2022231.Models
             DateOfBirth = DateTime.Parse(split[1]);
             HomeTown = split[2];
             Country = split[3];
-            Age = int.Parse(split[4]);
-            Gender = split[5];
-            RecordLabelId= int.Parse(split[6]);
+            Age = DateTime.Today.Year - DateOfBirth.Year;
+            Gender = split[4];
+            if (split[5]!="")
+            {
+                RecordLabelId = int.Parse(split[5]);
+            }
         }
         public virtual RecordLabel RecordLabel { get; set; }
         public virtual ICollection<Album> Albums { get; set; }
