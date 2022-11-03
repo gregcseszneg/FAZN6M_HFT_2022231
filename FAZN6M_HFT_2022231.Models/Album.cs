@@ -23,8 +23,7 @@ namespace FAZN6M_HFT_2022231.Models
         [ForeignKey(nameof(Musician))]
         public int MusicianId { get; set; }
 
-        [ForeignKey(nameof(Track))]
-        public int TrackId { get; set; }
+        public int NumberOfTracks { get; set; }
 
         public Album()
         {
@@ -38,7 +37,7 @@ namespace FAZN6M_HFT_2022231.Models
             Name = split[1];
             YearOfRelease = int.Parse(split[2]);
             MusicianId = int.Parse(split[3]);
-            TrackId=int.Parse(split[4]);
+            NumberOfTracks=int.Parse(split[4]);
         }
         public virtual Musician Musician { get; set; }
     }
