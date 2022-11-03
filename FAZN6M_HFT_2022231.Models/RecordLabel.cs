@@ -36,5 +36,7 @@ namespace FAZN6M_HFT_2022231.Models
             Country = split[2];
             Headquarters = split[3];
         }
+
+        public virtual ICollection<Musician> Musicians { get; set; }
     }
 }

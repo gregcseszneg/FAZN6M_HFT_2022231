@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -23,7 +24,8 @@ namespace FAZN6M_HFT_2022231.Models
 
         public Musician()
         {
-
+            Albums = new HashSet<Album>();
+            Tracks = new HashSet<Track>();
         }
 
         public Musician(string line)
@@ -37,6 +39,9 @@ namespace FAZN6M_HFT_2022231.Models
             Gender = split[5];
             RecordLabelId= int.Parse(split[6]);
         }
+        public virtual RecordLabel RecordLabel { get; set; }
+        public virtual ICollection<Album> Albums { get; set; }
+        public virtual ICollection<Track> Tracks { get; set; }
 
     }
 }

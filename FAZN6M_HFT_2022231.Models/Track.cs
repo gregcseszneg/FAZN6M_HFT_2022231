@@ -42,5 +42,7 @@ namespace FAZN6M_HFT_2022231.Models
             MusicianId = int.Parse(split[3]);
             AlbumId = int.Parse(split[4]);
         }
+
+        public virtual Musician Musician { get; set; }
     }
 }

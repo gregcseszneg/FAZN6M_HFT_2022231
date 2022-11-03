@@ -39,5 +39,6 @@ namespace FAZN6M_HFT_2022231.Models
             MusicianId = int.Parse(split[2]);
             TrackId=int.Parse(split[3]);
         }
+        public virtual Musician Musician { get; set; }
     }
 }
