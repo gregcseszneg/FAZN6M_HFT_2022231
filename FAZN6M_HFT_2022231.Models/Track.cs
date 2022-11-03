@@ -21,8 +21,6 @@ namespace FAZN6M_HFT_2022231.Models
         [Required]
         public int Length { get; set; } //in sec
 
-        public string Genre { get; set; }
-
         [Required]
         [ForeignKey(nameof(Musician))]
         public int MusicianId { get; set; }
@@ -39,9 +37,8 @@ namespace FAZN6M_HFT_2022231.Models
             TrackId = int.Parse(split[0]);
             Name = split[1];
             Length = int.Parse(split[2]);
-            Genre = split[3;
-            MusicianId = int.Parse(split[4]);
-            AlbumId = int.Parse(split[5]);
+            MusicianId = int.Parse(split[3]);
+            AlbumId = int.Parse(split[4]);
         }
 
         public virtual Musician Musician { get; set; }
