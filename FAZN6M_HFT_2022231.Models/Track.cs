@@ -24,8 +24,8 @@ namespace FAZN6M_HFT_2022231.Models
         public string Genre { get; set; }
 
         [Required]
+        [ForeignKey(nameof(Musician))]
         public int MusicianId { get; set; }
-
         public int AlbumId { get; set; }
 
         public Track()
