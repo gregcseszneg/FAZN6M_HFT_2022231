@@ -1,4 +1,4 @@
-﻿using Arch.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Castle.DynamicProxy.Contributors;
 using FAZN6M_HFT_2022231.Models;
 using System;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FAZN6M_HFT_2022231.Repository
 {
-    internal class MusicDbContext : DbContext
+    public partial class MusicDbContext : DbContext
     {
         public DbSet<Musician> musicians { get; set; }
         public DbSet<Album> albums { get; set; }
@@ -21,13 +21,38 @@ namespace FAZN6M_HFT_2022231.Repository
             this.Database.EnsureCreated();
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-            if (!optionsBuilder.IsConfigured)
+            if (!builder.IsConfigured)
             {
 
+                builder
+                    .UseInMemoryDatabase("asd")
+                    .UseLazyLoadingProxies();
             }
-            base.OnConfiguring(optionsBuilder);
+            
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Musician>(musician => musician
+            .HasOne(musician => musician.RecordLabel)
+            .WithMany(label => label.Musicians)
+            .HasForeignKey(musician => musician.RecordLabelId)
+            .OnDelete(DeleteBehavior.ClientSetNull));
+
+            modelBuilder.Entity<Album>(album => album
+            .HasOne(album => album.Musician)
+            .WithMany(musician => musician.Albums)
+            .HasForeignKey(album => album.MusicianId)
+            .OnDelete(DeleteBehavior.Cascade));
+
+            modelBuilder.Entity<Track>(track => track
+            .HasOne(track => track.Musician)
+            .WithMany(musicians => musicians.Tracks)
+            .HasForeignKey(track => track.MusicianId)
+            .OnDelete(DeleteBehavior.Cascade));
+
+            modelBuilder.Entity<RecordLabel>();
         }
 
     }
