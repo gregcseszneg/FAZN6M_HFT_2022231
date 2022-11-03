@@ -18,7 +18,7 @@ namespace FAZN6M_HFT_2022231.Models
         [Required]
         public string Name { get; set; }
 
-        public DateTime YearOfRelease { get; set; }
+        public int YearOfRelease { get; set; }
 
         [ForeignKey(nameof(Musician))]
         public int MusicianId { get; set; }
@@ -36,7 +36,7 @@ namespace FAZN6M_HFT_2022231.Models
             string[] split = line.Split('#');
             AlbumId = int.Parse(split[0]);
             Name = split[1];
-            YearOfRelease = DateTime.Parse(split[2]);
+            YearOfRelease = int.Parse(split[2]);
             MusicianId = int.Parse(split[3]);
             TrackId=int.Parse(split[4]);
         }
