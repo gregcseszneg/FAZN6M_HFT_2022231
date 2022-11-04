@@ -25,11 +25,12 @@ namespace FAZN6M_HFT_2022231.Models
 
         public RecordLabel()
         {
-
+            Musicians = new HashSet<Musician>();
         }
 
         public RecordLabel(string line)
         {
+            Musicians = new HashSet<Musician>();
             string[] split = line.Split('#');
             RecordLabelId = int.Parse(split[0]);
             Name = split[1];

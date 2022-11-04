@@ -27,9 +27,8 @@ namespace FAZN6M_HFT_2022231.Models
 
         public Album()
         {
-
+            
         }
-
         public Album(string line)
         {
             string[] split = line.Split('#');

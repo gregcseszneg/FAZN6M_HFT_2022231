@@ -30,6 +30,8 @@ namespace FAZN6M_HFT_2022231.Models
 
         public Musician(string line)
         {
+            Albums = new HashSet<Album>();
+            Tracks = new HashSet<Track>();
             string[] split = line.Split('#');
             MusicianId = int.Parse(split[0]);
             Name = split[1];
