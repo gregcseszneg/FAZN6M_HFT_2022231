@@ -11,10 +11,10 @@ namespace FAZN6M_HFT_2022231.Repository
 {
     public partial class MusicDbContext : DbContext
     {
-        public DbSet<Musician> musicians { get; set; }
-        public DbSet<Album> albums { get; set; }
+        public DbSet<Musician> Musicians { get; set; }
+        public DbSet<Album> Albums { get; set; }
         public DbSet<Track> tracks { get; set; }
-        public DbSet<RecordLabel> recordlabels { get; set; }
+        public DbSet<RecordLabel> RecordLabels{ get; set; }
 
         public MusicDbContext()
         {
