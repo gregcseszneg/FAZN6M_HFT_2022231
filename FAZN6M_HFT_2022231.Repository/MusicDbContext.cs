@@ -13,7 +13,7 @@ namespace FAZN6M_HFT_2022231.Repository
     {
         public DbSet<Musician> Musicians { get; set; }
         public DbSet<Album> Albums { get; set; }
-        public DbSet<Track> tracks { get; set; }
+        public DbSet<Track> Tracks { get; set; }
         public DbSet<RecordLabel> RecordLabels{ get; set; }
 
         public MusicDbContext()
