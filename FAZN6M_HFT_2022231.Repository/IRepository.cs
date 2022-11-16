@@ -9,7 +9,7 @@ namespace FAZN6M_HFT_2022231.Repository
     internal interface IRepository<T> where T : class
     {
         IQueryable<T> ReadAll();
-        T read(int id);
+        T Read(int id);
         void Create(T item);
         void Update(T item);
         void Delete(int id);
