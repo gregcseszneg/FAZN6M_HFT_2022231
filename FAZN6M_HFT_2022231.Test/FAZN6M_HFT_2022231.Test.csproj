@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\FAZN6M_HFT_2022231.Logic\FAZN6M_HFT_2022231.Logic.csproj" />
     <ProjectReference Include="..\FAZN6M_HFT_2022231.Models\FAZN6M_HFT_2022231.Models.csproj" />
     <ProjectReference Include="..\FAZN6M_HFT_2022231.Repository\FAZN6M_HFT_2022231.Repository.csproj" />

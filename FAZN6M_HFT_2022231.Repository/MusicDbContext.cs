@@ -71,7 +71,7 @@ namespace FAZN6M_HFT_2022231.Repository
                 new Musician("1#G-eazy#05/24/1989#Oakland#USA#male#2"),
                 new Musician("2#NF#03/30/1991#Gladwin#USA#male#1"),
                 new Musician("3#Dr. Dre#02/18/1965#Compton#USA#male#3"),
-                new Musician("4#Snoop Dogg10/20/1971#Long Beach#USA#male#3"),
+                new Musician("4#Snoop Dogg#10/20/1971#Long Beach#USA#male#3"),
                 new Musician("5#Russ#09/26/1992#Atlanta#USA#male#"),
                 new Musician("6#Machine Gun Kelly#04/22/1990#Oakand#USA#male#4"),
                 new Musician("7#Ed Sheeran#02/17/1991#Hebden Bridge#England#male#5"),
