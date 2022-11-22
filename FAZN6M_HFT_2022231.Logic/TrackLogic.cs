@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FAZN6M_HFT_2022231.Logic
 {
-    internal class TrackLogic
+    internal class TrackLogic : ITrackLogic
     {
         IRepository<Track> repo;
         public TrackLogic(IRepository<Track> repo)

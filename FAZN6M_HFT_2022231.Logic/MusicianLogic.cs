@@ -6,8 +6,8 @@ using System.Linq;
 
 namespace FAZN6M_HFT_2022231.Logic
 {
-    
-    public class MusicianLogic
+
+    public class MusicianLogic : IMusicianLogic
     {
         IRepository<Musician> repo;
         public MusicianLogic(IRepository<Musician> repo)
@@ -31,7 +31,7 @@ namespace FAZN6M_HFT_2022231.Logic
 
         public IQueryable<Musician> ReadAll()
         {
-           return  this.repo.ReadAll();
+            return this.repo.ReadAll();
         }
 
         public void Update(Musician item)

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FAZN6M_HFT_2022231.Logic
 {
-    public class AlbumLogic
+    public class AlbumLogic : IAlbumLogic
     {
         IRepository<Album> repo;
         public AlbumLogic(IRepository<Album> repo)
