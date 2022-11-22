@@ -21,7 +21,7 @@ namespace FAZN6M_HFT_2022231.Logic
             {
                 throw new ArgumentException("The Musican must have a name!");
             }
-            if (item.Age>120 && item.Age<1)
+            if (item.Age>120 || item.Age<1)
             {
                 throw new ArgumentException("Given age is invalid!");
             }
