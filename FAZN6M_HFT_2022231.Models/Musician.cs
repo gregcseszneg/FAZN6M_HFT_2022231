@@ -16,7 +16,7 @@ namespace FAZN6M_HFT_2022231.Models
         public DateTime DateOfBirth { get; set; }
         public string HomeTown { get; set; }
         public string Country { get; set; }
-        [Range(0,120)]
+        [Range(1,120)]
         public int Age { get; set; }
         public string Gender { get; set; }
         [ForeignKey(nameof(RecordLabel))]
@@ -48,6 +48,20 @@ namespace FAZN6M_HFT_2022231.Models
         public virtual RecordLabel RecordLabel { get; set; }
         public virtual ICollection<Album> Albums { get; set; }
         public virtual ICollection<Track> Tracks { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            Musician musician = obj as Musician;
+            if (musician == null)
+            {
+                return false;
+            }
+            return musician.DateOfBirth == this.DateOfBirth && musician.Name == this.Name && musician.MusicianId == this.MusicianId;
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(MusicianId, Name, DateOfBirth);
+        }
 
     }
 }
