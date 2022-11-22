@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FAZN6M_HFT_2022231.Repository
 {
-    internal class MusicianRepository : Repository<Musician>, IRepository<Musician>
+    public class MusicianRepository : Repository<Musician>, IRepository<Musician>
     {
         public MusicianRepository(MusicDbContext ctx) : base(ctx)
         {
