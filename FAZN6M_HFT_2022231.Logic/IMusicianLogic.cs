@@ -1,4 +1,5 @@
 ﻿using FAZN6M_HFT_2022231.Models;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace FAZN6M_HFT_2022231.Logic
@@ -8,7 +9,7 @@ namespace FAZN6M_HFT_2022231.Logic
         void Create(Musician item);
         void Delete(int id);
         Musician Read(int id);
-        IQueryable<Musician> ReadAll();
+        IEnumerable<Musician> ReadAll();
         void Update(Musician item);
     }
 }

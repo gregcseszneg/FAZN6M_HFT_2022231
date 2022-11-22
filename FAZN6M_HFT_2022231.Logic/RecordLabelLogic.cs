@@ -31,7 +31,7 @@ namespace FAZN6M_HFT_2022231.Logic
             return this.repository.Read(id);
         }
 
-        public IQueryable<RecordLabel> ReadAll()
+        public IEnumerable<RecordLabel> ReadAll()
         {
             return this.repository.ReadAll();
         }

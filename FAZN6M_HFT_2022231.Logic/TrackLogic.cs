@@ -31,7 +31,7 @@ namespace FAZN6M_HFT_2022231.Logic
             return this.repo.Read(id);
         }
 
-        public IQueryable<Track> ReadAll()
+        public IEnumerable<Track> ReadAll()
         {
             return this.repo.ReadAll();
         }

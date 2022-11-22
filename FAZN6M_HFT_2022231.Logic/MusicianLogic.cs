@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using FAZN6M_HFT_2022231.Repository;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace FAZN6M_HFT_2022231.Logic
 {
@@ -29,7 +30,7 @@ namespace FAZN6M_HFT_2022231.Logic
             return this.repo.Read(id);
         }
 
-        public IQueryable<Musician> ReadAll()
+        public IEnumerable<Musician> ReadAll()
         {
             return this.repo.ReadAll();
         }

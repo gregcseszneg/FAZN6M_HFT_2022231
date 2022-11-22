@@ -1,4 +1,5 @@
 ﻿using FAZN6M_HFT_2022231.Models;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace FAZN6M_HFT_2022231.Logic
@@ -8,7 +9,7 @@ namespace FAZN6M_HFT_2022231.Logic
         void Create(Track item);
         void Delete(int id);
         Track Read(int id);
-        IQueryable<Track> ReadAll();
+        IEnumerable<Track> ReadAll();
         void Update(Track item);
     }
 }
