@@ -45,7 +45,7 @@ namespace FAZN6M_HFT_2022231.Logic
 
         public void Update(Musician item)
         {
-            this.repo.Create(item);
+            this.repo.Update(item);
         }
 
         
