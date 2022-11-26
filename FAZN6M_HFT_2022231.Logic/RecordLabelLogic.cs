@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FAZN6M_HFT_2022231.Logic
 {
-    internal class RecordLabelLogic : IRecordLabelLogic
+    public class RecordLabelLogic : IRecordLabelLogic
     {
         IRepository<RecordLabel> repository;
         public RecordLabelLogic(IRepository<RecordLabel> repository)
