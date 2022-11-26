@@ -148,5 +148,73 @@ namespace FAZN6M_HFT_2022231.Test
             //ASSERT
             Assert.That(result, Is.EqualTo(shouldbe));
         }
+
+        public void CheckTracksFromMusicianBornBefore98()
+        {
+            //ARRANGE
+            var shouldbe = new List<Track>()
+            {
+                 new Track("4#Dior#216#1#")
+            };
+
+            //ACT
+            var result = "";
+
+            //ASSERT
+            CollectionAssert.AreEqual(shouldbe, result);
+        }
+
+        public void CheckMusiciansFromDeathRowRecords()
+        {
+            //ARRANGE
+            var shouldbe = new List<Musician>()
+            {
+                new Musician("3#Tyga#11/19/1998#Compton#USA#male#3"),
+                new Musician("4#Travis Scott#04/30/1991#Houston#USA#male#3")
+            };
+
+            //ACT
+            var result = "";
+
+            //ASSERT
+            CollectionAssert.AreEqual(shouldbe, result);
+        }
+
+        public void CheckWhichMusicianHasTheMostTracks()
+        {
+            //ARRANGE
+            Musician shouldbe = new Musician("5#Russ#09/26/1992#Atlanta#USA#male#");
+
+            //ACT
+            var result = "";
+
+            //ASSERT
+            Assert.AreEqual(result, shouldbe);
+        }
+
+        public void CheckMusicianAvarageAgeInDeathRowRecords()
+        {
+            //ACT
+            int result = 0;
+
+            //ASSERT
+
+            Assert.That(result, Is.EqualTo(40));
+        }
+
+        public void CheckRecordLabelsOftheMusicians5Character()
+        {
+            //ARRANGE
+            var shouldbe = new List<RecordLabel>()
+            {
+                new RecordLabel("3#Death Row Records#1991#USA#Beverly Hills")
+            };
+
+            //ACT
+            var result = "";
+
+            //ASSERT
+            CollectionAssert.AreEqual(result, shouldbe);
+        }
     }
 }
