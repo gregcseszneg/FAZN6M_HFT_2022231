@@ -84,7 +84,7 @@ namespace FAZN6M_HFT_2022231.Repository
                 new Musician("14#Chris Brown#05/05/1989#Tappahancock#USA#male#2")
             });
 
-            modelBuilder.Entity<Track>().HasData(new Album[]
+            modelBuilder.Entity<Album>().HasData(new Album[]
             {
                 new Album("1#SHAKE THE SNOW GLOBE#2020#5#14"),
                 new Album("2#These Things Happen#2014#1#16"),
