@@ -7,7 +7,6 @@ using System.Collections.Generic;
 
 namespace FAZN6M_HFT_2022231.Logic
 {
-
     public class MusicianLogic : IMusicianLogic
     {
         IRepository<Musician> repo;
@@ -47,7 +46,18 @@ namespace FAZN6M_HFT_2022231.Logic
         {
             this.repo.Update(item);
         }
-
-        
+        public IEnumerable<Musician> MusiciansFromDeathRowRecords()
+        {
+            return repo.ReadAll().Where(m => m.RecordLabel.Name == "Death Row Records");
+        }
+        public IEnumerable<AvgAgeInRecordLabel> MusicianAverageAgeInTheRecordLabels()
+        {
+            var result = repo.ReadAll().GroupBy(r => r.RecordLabel.Name).Select(t => new AvgAgeInRecordLabel()
+            {
+                RecordLabel = t.Key,
+                AvgAge = t.Average(f => f.Age)
+            });
+            return result;
+        }
     }
 }

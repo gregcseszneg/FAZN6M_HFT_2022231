@@ -40,5 +40,21 @@ namespace FAZN6M_HFT_2022231.Logic
         {
             this.repo.Update(item);
         }
+        public IEnumerable<Track> TracksFromMusicianBornAfter98()
+        {
+            return repo.ReadAll().Where(t => t.Musician.DateOfBirth.Year > 1998);
+        }
+        public IEnumerable<SumOfMusicLength> SumOfMusicLengthPerMusician()
+        {
+            return repo.ReadAll().GroupBy(m => m.Musician.Name).Select(k => new SumOfMusicLength
+            {
+                Name = k.Key,
+                Length = k.Sum(t => t.Length)
+            });
+        }
+        public IEnumerable<Musician> MusiciansWHoHasLongerSongThan200()
+        {
+            return repo.ReadAll().Where(t => t.Length > 200).Select(m => m.Musician).Distinct();
+        }
     }
 }
