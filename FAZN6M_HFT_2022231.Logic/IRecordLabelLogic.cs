@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace FAZN6M_HFT_2022231.Logic
 {
-    internal interface IRecordLabelLogic
+    public interface IRecordLabelLogic
     {
         void Create(RecordLabel item);
         void Delete(int id);

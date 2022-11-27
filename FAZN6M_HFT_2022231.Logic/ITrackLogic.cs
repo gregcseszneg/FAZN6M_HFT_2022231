@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace FAZN6M_HFT_2022231.Logic
 {
-    internal interface ITrackLogic
+    public interface ITrackLogic
     {
         void Create(Track item);
         void Delete(int id);
