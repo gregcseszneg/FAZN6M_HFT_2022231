@@ -1,17 +1,23 @@
 ﻿using FAZN6M_HFT_2022231.Logic;
 using FAZN6M_HFT_2022231.Models;
 using FAZN6M_HFT_2022231.Repository;
+using Microsoft.EntityFrameworkCore;
 using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 namespace FAZN6M_HFT_2022231.Test
 {
+
     [TestFixture]
-    public class MusicianTester
+    public class Tester
     {
+
         MusicianLogic mLogic;
         TrackLogic tLogic;
         RecordLabelLogic rLogic;
@@ -19,6 +25,7 @@ namespace FAZN6M_HFT_2022231.Test
         Mock<IRepository<Musician>> mockMusicianRepo;
         Mock<IRepository<Track>> mockTrackRepo;
         Mock<IRepository<RecordLabel>> mockRecordLabelRepo;
+
         [SetUp]
         public void InIt()
         {
@@ -31,7 +38,7 @@ namespace FAZN6M_HFT_2022231.Test
                 new Musician("5#Russ#09/26/1992#Atlanta#USA#male#")
             }.AsQueryable();
 
-            var tracks = new List<Track>()
+            var tracks= new List<Track>()
             {
                 new Track("1#Are You Entertained#156#5#"),
                 new Track("2#CIVIL WAR#144#5#1"),
@@ -42,7 +49,7 @@ namespace FAZN6M_HFT_2022231.Test
                 new Track("7#HIGHEST IN THE ROOM#175#4#"),
             }.AsQueryable();
 
-            var recordlabels = new List<RecordLabel>()
+            var recordLabels = new List<RecordLabel>()
             {
                 new RecordLabel("1#Capitol Records#1942#USA#Hollywood"),
                 new RecordLabel("2#RCA Records#1900#USA#New York City"),
@@ -56,18 +63,20 @@ namespace FAZN6M_HFT_2022231.Test
             mockTrackRepo.Setup(m => m.ReadAll()).Returns(tracks);
 
             mockRecordLabelRepo = new Mock<IRepository<RecordLabel>>();
-            mockRecordLabelRepo.Setup(m => m.ReadAll()).Returns(recordlabels);
+            mockRecordLabelRepo.Setup(m => m.ReadAll()).Returns(recordLabels);
 
             mLogic = new MusicianLogic(mockMusicianRepo.Object);
             tLogic = new TrackLogic(mockTrackRepo.Object);
             rLogic = new RecordLabelLogic(mockRecordLabelRepo.Object);
         }
+
         [Test]
+
         public void CheckCreate()
         {
             //ARRANGE
             Musician newMusician = new Musician("6#Juice Wrld#12/02/1998#Chicago#USA#male#");
-        
+
             //ACT
             mLogic.Create(newMusician);
 
@@ -108,7 +117,7 @@ namespace FAZN6M_HFT_2022231.Test
         public void CheckUpdate()
         {
             //ARRANGE
-            Musician newTravis =new Musician("4#Travis Scott#04/29/1991#Budapest#Hungary#male#3");
+            Musician newTravis = new Musician("4#Travis Scott#04/29/1991#Budapest#Hungary#male#3");
 
             //ACT
             mLogic.Update(newTravis);
@@ -125,7 +134,7 @@ namespace FAZN6M_HFT_2022231.Test
 
             //ACT
             var result = mLogic.Read(2);
-            
+
             //ASSERT
             Assert.That(result, Is.EqualTo(tyga));
         }
@@ -149,72 +158,6 @@ namespace FAZN6M_HFT_2022231.Test
             Assert.That(result, Is.EqualTo(shouldbe));
         }
 
-        public void CheckTracksFromMusicianBornBefore98()
-        {
-            //ARRANGE
-            var shouldbe = new List<Track>()
-            {
-                 new Track("4#Dior#216#1#")
-            };
 
-            //ACT
-            var result = "";
-
-            //ASSERT
-            CollectionAssert.AreEqual(shouldbe, result);
-        }
-
-        public void CheckMusiciansFromDeathRowRecords()
-        {
-            //ARRANGE
-            var shouldbe = new List<Musician>()
-            {
-                new Musician("3#Tyga#11/19/1998#Compton#USA#male#3"),
-                new Musician("4#Travis Scott#04/30/1991#Houston#USA#male#3")
-            };
-
-            //ACT
-            var result = "";
-
-            //ASSERT
-            CollectionAssert.AreEqual(shouldbe, result);
-        }
-
-        public void CheckWhichMusicianHasTheMostTracks()
-        {
-            //ARRANGE
-            Musician shouldbe = new Musician("5#Russ#09/26/1992#Atlanta#USA#male#");
-
-            //ACT
-            var result = "";
-
-            //ASSERT
-            Assert.AreEqual(result, shouldbe);
-        }
-
-        public void CheckMusicianAvarageAgeInDeathRowRecords()
-        {
-            //ACT
-            int result = 0;
-
-            //ASSERT
-
-            Assert.That(result, Is.EqualTo(40));
-        }
-
-        public void CheckRecordLabelsOftheMusicians5Character()
-        {
-            //ARRANGE
-            var shouldbe = new List<RecordLabel>()
-            {
-                new RecordLabel("3#Death Row Records#1991#USA#Beverly Hills")
-            };
-
-            //ACT
-            var result = "";
-
-            //ASSERT
-            CollectionAssert.AreEqual(result, shouldbe);
-        }
     }
 }
