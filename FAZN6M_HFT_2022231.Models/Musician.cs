@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace FAZN6M_HFT_2022231.Models
 {
@@ -40,13 +41,14 @@ namespace FAZN6M_HFT_2022231.Models
             Country = split[4];
             Age = DateTime.Today.Year - DateOfBirth.Year;
             Gender = split[5];
-            if (split[6]!="")
-            {
-                RecordLabelId = int.Parse(split[6]);
-            }
+            RecordLabelId = int.Parse(split[6]);
+
         }
+        [JsonIgnore]
         public virtual RecordLabel RecordLabel { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Album> Albums { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Track> Tracks { get; set; }
 
         public override bool Equals(object obj)
