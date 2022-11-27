@@ -14,13 +14,17 @@ namespace FAZN6M_HFT_2022231.Models
 
         public override bool Equals(object obj)
         {
-            if (obj==null)
-            {
-                return false;
-            }
-            {
-                return (obj as AvgAgeInRecordLabel).RecordLabel== this.RecordLabel && (obj as AvgAgeInRecordLabel).AvgAge == this.AvgAge;
-            }
+
+                if (obj == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return (obj as AvgAgeInRecordLabel).RecordLabel == this.RecordLabel && (obj as AvgAgeInRecordLabel).AvgAge == this.AvgAge;
+                };
+
+            
         }
         public override int GetHashCode()
         {
