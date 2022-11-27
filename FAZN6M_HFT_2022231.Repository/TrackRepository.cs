@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FAZN6M_HFT_2022231.Repository
 {
-    internal class TrackRepository : Repository<Track>, IRepository<Track>
+    public class TrackRepository : Repository<Track>, IRepository<Track>
     {
         public TrackRepository(MusicDbContext ctx) : base(ctx)
         {

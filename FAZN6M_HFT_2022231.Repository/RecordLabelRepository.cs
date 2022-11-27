@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FAZN6M_HFT_2022231.Repository
 {
-    internal class RecordLabelRepository : Repository<RecordLabel>, IRepository<RecordLabel>
+    public class RecordLabelRepository : Repository<RecordLabel>, IRepository<RecordLabel>
     {
         public RecordLabelRepository(MusicDbContext ctx) : base(ctx)
         {
