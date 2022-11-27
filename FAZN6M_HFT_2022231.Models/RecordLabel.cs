@@ -40,5 +40,23 @@ namespace FAZN6M_HFT_2022231.Models
         }
 
         public virtual ICollection<Musician> Musicians { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            RecordLabel rl=obj as RecordLabel;
+            if (rl == null) return false;
+            else
+            {
+                return rl.RecordLabelId.Equals(this.RecordLabelId)
+                    && rl.Name.Equals(this.Name)
+                    && rl.YearOfFoundation.Equals(this.YearOfFoundation)
+                    && rl.Country.Equals(this.Country)
+                    && rl.Headquarters.Equals(this.Headquarters);
+            }
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(RecordLabelId,Name, YearOfFoundation, Country, Headquarters);
+        }
     }
 }

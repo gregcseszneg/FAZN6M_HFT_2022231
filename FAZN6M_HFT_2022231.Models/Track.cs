@@ -45,5 +45,23 @@ namespace FAZN6M_HFT_2022231.Models
         }
 
         public virtual Musician Musician { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            Track tr=obj as Track;
+            if (tr==null) return false;
+            else
+            {
+                return tr.TrackId.Equals(TrackId)
+                    && tr.Name.Equals(Name)
+                    && tr.Length.Equals(Length)
+                    && tr.AlbumId.Equals(AlbumId)
+                    && tr.MusicianId.Equals(MusicianId);
+            }
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(TrackId,Name, Length, MusicianId, AlbumId);
+        }
     }
 }
