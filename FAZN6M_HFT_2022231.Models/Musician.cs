@@ -13,7 +13,6 @@ namespace FAZN6M_HFT_2022231.Models
         public int MusicianId { get; set; }
         [Required]
         public string Name { get; set; }
-        [Required]
         public DateTime DateOfBirth { get; set; }
         public string HomeTown { get; set; }
         public string Country { get; set; }
@@ -44,6 +43,7 @@ namespace FAZN6M_HFT_2022231.Models
             RecordLabelId = int.Parse(split[6]);
 
         }
+        [NotMapped]
         [JsonIgnore]
         public virtual RecordLabel RecordLabel { get; set; }
         [JsonIgnore]
@@ -58,7 +58,7 @@ namespace FAZN6M_HFT_2022231.Models
             {
                 return false;
             }
-            return musician.DateOfBirth == this.DateOfBirth && musician.Name == this.Name && musician.MusicianId == this.MusicianId;
+            return musician.DateOfBirth==this.DateOfBirth && musician.Name == this.Name && musician.MusicianId == this.MusicianId;
         }
         public override int GetHashCode()
         {

@@ -20,6 +20,7 @@ namespace FAZN6M_HFT_2022231.Models
 
         public int YearOfRelease { get; set; }
 
+        [Required]
         [ForeignKey(nameof(Musician))]
         public int MusicianId { get; set; }
 
@@ -38,6 +39,7 @@ namespace FAZN6M_HFT_2022231.Models
             MusicianId = int.Parse(split[3]);
             NumberOfTracks=int.Parse(split[4]);
         }
+        [NotMapped]
         public virtual Musician Musician { get; set; }
 
         public override bool Equals(object obj)

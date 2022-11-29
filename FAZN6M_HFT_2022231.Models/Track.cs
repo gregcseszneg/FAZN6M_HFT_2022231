@@ -43,7 +43,7 @@ namespace FAZN6M_HFT_2022231.Models
                 AlbumId = int.Parse(split[4]);
             }
         }
-
+        [NotMapped]
         public virtual Musician Musician { get; set; }
 
         public override bool Equals(object obj)
