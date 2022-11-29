@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace FAZN6M_HFT_2022231.Endpoint.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class AlbumController : ControllerBase
     {
@@ -39,7 +39,7 @@ namespace FAZN6M_HFT_2022231.Endpoint.Controllers
         }
 
         // PUT api/<AlbumController>/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public void Update(int id, [FromBody] Album value)
         {
             this.logic.Update(value);
