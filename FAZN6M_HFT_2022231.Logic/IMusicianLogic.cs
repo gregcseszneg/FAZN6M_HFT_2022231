@@ -11,5 +11,7 @@ namespace FAZN6M_HFT_2022231.Logic
         Musician Read(int id);
         IEnumerable<Musician> ReadAll();
         void Update(Musician item);
+        IEnumerable<Musician> MusiciansFromRecordLabel(string name);
+        IEnumerable<AvgAgeInRecordLabel> MusicianAverageAgeInTheRecordLabels();
     }
 }

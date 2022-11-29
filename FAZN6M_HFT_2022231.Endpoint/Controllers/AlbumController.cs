@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace FAZN6M_HFT_2022231.Endpoint.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class AlbumController : ControllerBase
     {
@@ -17,35 +17,35 @@ namespace FAZN6M_HFT_2022231.Endpoint.Controllers
         {
             this.logic = logic;
         }
-        // GET: api/<AlbumController>
+
         [HttpGet]
         public IEnumerable<Album> ReadAll()
         {
             return this.logic.ReadAll();
         }
 
-        // GET api/<AlbumController>/5
+
         [HttpGet("{id}")]
         public Album Read(int id)
         {
             return this.logic.Read(id);
         }
 
-        // POST api/<AlbumController>
+
         [HttpPost]
         public void Create([FromBody] Album value)
         {
             this.logic.Create(value);
         }
 
-        // PUT api/<AlbumController>/5
-        [HttpPut("{id}")]
-        public void Update(int id, [FromBody] Album value)
+
+        [HttpPut]
+        public void Update([FromBody] Album value)
         {
             this.logic.Update(value);
         }
 
-        // DELETE api/<AlbumController>/5
+
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

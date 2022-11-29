@@ -11,5 +11,9 @@ namespace FAZN6M_HFT_2022231.Logic
         Track Read(int id);
         IEnumerable<Track> ReadAll();
         void Update(Track item);
+        IEnumerable<Track> TracksFromMusicianBornAfter(string year);
+        IEnumerable<SumOfMusicLength> SumOfMusicLengthPerMusician();
+        IEnumerable<Musician> MusiciansWHoHasLongerSongThan(string length);
+
     }
 }
