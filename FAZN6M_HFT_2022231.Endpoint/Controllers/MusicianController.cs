@@ -39,8 +39,8 @@ namespace FAZN6M_HFT_2022231.Endpoint.Controllers
         }
 
         // PUT api/<MusicianController>/5
-        [HttpPut]
-        public void Update([FromBody] Musician value)
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] Musician value)
         {
             this.logic.Update(value);
         }

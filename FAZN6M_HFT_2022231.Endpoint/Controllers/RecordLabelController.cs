@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace FAZN6M_HFT_2022231.Endpoint.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class RecordLabelController : ControllerBase
     {
@@ -39,8 +39,8 @@ namespace FAZN6M_HFT_2022231.Endpoint.Controllers
         }
 
         // PUT api/<RecordLabelController>/5
-        [HttpPut]
-        public void Update([FromBody] RecordLabel value)
+        [HttpPut("{id}")]
+        public void Update(int id, [FromBody] RecordLabel value)
         {
             this.logic.Update(value);
         }

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace FAZN6M_HFT_2022231.Endpoint.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class TrackController : ControllerBase
     {
@@ -38,8 +38,8 @@ namespace FAZN6M_HFT_2022231.Endpoint.Controllers
         }
 
         // PUT api/<TrackController>/5
-        [HttpPut]
-        public void Update([FromBody] Track value)
+        [HttpPut("{id}")]
+        public void Update(int id, [FromBody] Track value)
         {
             this.logic.Update(value);
         }
