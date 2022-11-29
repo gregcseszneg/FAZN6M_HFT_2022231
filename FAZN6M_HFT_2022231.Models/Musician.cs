@@ -16,6 +16,7 @@ namespace FAZN6M_HFT_2022231.Models
         public DateTime DateOfBirth { get; set; }
         public string HomeTown { get; set; }
         public string Country { get; set; }
+
         [Range(1,120)]
         public int Age { get; set; }
         public string Gender { get; set; }

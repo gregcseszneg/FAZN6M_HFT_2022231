@@ -17,16 +17,17 @@ namespace FAZN6M_HFT_2022231.Client
             {
                 Console.WriteLine("Enter musician name:");
                 string name = Console.ReadLine();
-                Console.WriteLine("Enter musician id:");
+                Console.WriteLine("Enter musician's id:");
                 int id = int.Parse(Console.ReadLine());
-                Console.WriteLine("Enter record label id:");
-                int rlId = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter musician's date of birth (YYYY-MM-DD):");
+                DateTime DateOfBirth = DateTime.Parse(Console.ReadLine());
                 rest.Post(new Musician()
                 {
                     Name = name,
                     MusicianId = id,
-                    RecordLabelId = rlId
-                }, "musician");
+                    DateOfBirth=DateOfBirth,
+                    Age= DateTime.Today.Year - DateOfBirth.Year
+            }, "musician");
             }
             else if (entity == "Track")
             {
