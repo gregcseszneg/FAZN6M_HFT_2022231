@@ -30,5 +30,9 @@ namespace FAZN6M_HFT_2022231.Models
         {
             return HashCode.Combine(RecordLabel, AvgAge);
         }
+        public override string ToString()
+        {
+            return RecordLabel + " " + AvgAge;
+        }
     }
 }

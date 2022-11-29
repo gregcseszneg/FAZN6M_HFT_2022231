@@ -63,5 +63,9 @@ namespace FAZN6M_HFT_2022231.Models
         {
             return HashCode.Combine(TrackId,Name, Length, MusicianId, AlbumId);
         }
+        public override string ToString()
+        {
+            return TrackId + " " + Name;
+        }
     }
 }

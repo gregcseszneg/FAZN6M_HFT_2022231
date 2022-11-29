@@ -26,5 +26,9 @@ namespace FAZN6M_HFT_2022231.Models
         {
             return HashCode.Combine(Name, Length);
         }
+        public override string ToString()
+        {
+            return Name + " " + Length;
+        }
     }
 }

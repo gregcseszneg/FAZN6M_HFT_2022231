@@ -154,36 +154,36 @@ namespace FAZN6M_HFT_2022231.Client
             if (entity == "Musician")
             {
                 List<Musician> musicians = rest.Get<Musician>("musician");
-                foreach (var item in musicians)
+                foreach (Musician item in musicians)
                 {
-                    Console.WriteLine(item.MusicianId + " " + item.Name);
+                    Console.WriteLine(item.ToString());
                 }
                 Console.ReadLine();
             }
             else if (entity == "Track")
             {
                 List<Track> tracks = rest.Get<Track>("track");
-                foreach (var item in tracks)
+                foreach (Track item in tracks)
                 {
-                    Console.WriteLine(item.TrackId + " " + item.Name);
+                    Console.WriteLine(item.ToString());
                 }
                 Console.ReadLine();
             }
             else if (entity == "Album")
             {
                 List<Album> albums = rest.Get<Album>("album");
-                foreach (var item in albums)
+                foreach (Album item in albums)
                 {
-                    Console.WriteLine(item.AlbumId + " " + item.Name);
+                    Console.WriteLine(item.ToString());
                 }
                 Console.ReadLine();
             }
             else if (entity == "Record label")
             {
                 List<RecordLabel> recordLabels = rest.Get<RecordLabel>("recordlabel");
-                foreach (var item in recordLabels)
+                foreach (RecordLabel item in recordLabels)
                 {
-                    Console.WriteLine(item.RecordLabelId + " " + item.Name);
+                    Console.WriteLine(item.ToString());
                 }
                 Console.ReadLine();
             }
@@ -194,7 +194,7 @@ namespace FAZN6M_HFT_2022231.Client
             string year = Console.ReadLine();
             Console.WriteLine($"Tracks from Musicians who born after {year}:");
             var data = rest.Get<Track>($"Query/TracksFromMusicianBornAfter/{year}");
-            foreach (var item in data)
+            foreach (Track item in data)
             {
                 Console.WriteLine(item.ToString());
             }
@@ -204,19 +204,19 @@ namespace FAZN6M_HFT_2022231.Client
         {
             Console.WriteLine("Sum of music length per musician:");
             var data = rest.Get<SumOfMusicLength>("Query/SumOfMusicLengthPerMusician");
-            foreach (var item in data)
+            foreach (SumOfMusicLength item in data)
             {
                 Console.WriteLine(item.ToString());
             }
             Console.ReadLine();
         }
-        static void MusiciansWHoHasLongerSongThan()
+        static void MusiciansWhoHasLongerSongThan()
         {
             Console.WriteLine("Longer Than: ");
             string length = Console.ReadLine();
             Console.WriteLine($"Musicians who have at least one longer song than {length}:");
-            var data = rest.Get<Musician>($"Query/MusiciansWHoHasLongerSongThan/{length}");
-            foreach (var item in data)
+            var data = rest.Get<Musician>($"Query/MusiciansWhoHasLongerSongThan/{length}");
+            foreach (Musician item in data)
             {
                 Console.WriteLine(item.ToString());
             }
@@ -227,10 +227,8 @@ namespace FAZN6M_HFT_2022231.Client
             Console.WriteLine("Choose record label: ");
             string name = Console.ReadLine();
             Console.WriteLine($"Musicians from {name}:");
-            string[] correct = name.Split(' ');
-            name = correct[0] + "%20" + correct[1];
-            var data = rest.Get<SumOfMusicLength>($"Query/MusiciansFromRecordLabel/{name}");
-            foreach (var item in data)
+            var data = rest.Get<Musician>($"Query/MusiciansFromRecordLabel/{name}");
+            foreach (Musician item in data)
             {
                 Console.WriteLine(item.ToString());
             }
@@ -240,7 +238,7 @@ namespace FAZN6M_HFT_2022231.Client
         {
             Console.WriteLine("Musicians average age in record labels:");
             var data = rest.Get<AvgAgeInRecordLabel>("Query/MusicianAverageAgeInTheRecordLabels");
-            foreach (var item in data)
+            foreach (AvgAgeInRecordLabel item in data)
             {
                 Console.WriteLine(item.ToString());
             }
@@ -282,7 +280,7 @@ namespace FAZN6M_HFT_2022231.Client
             var queriesSubMenu = new ConsoleMenu(args, level: 1)
                 .Add("Tracks from musicians who born after...", () => TracksFromMusicianBornAfter())
                 .Add("Sum of music length per musician", () => SumOfMusicLengthPerMusician())
-                .Add("Musicians who has a longer song then...", () => MusiciansWHoHasLongerSongThan())
+                .Add("Musicians who has a longer song then...", () => MusiciansWhoHasLongerSongThan())
                 .Add("Musicians from ... record label", () => MusiciansFromRecordLabel())
                 .Add("Musicician average age in the record labels ... record label", () => MusicianAverageAgeInTheRecordLabels())
                 .Add("Exit", ConsoleMenu.Close);

@@ -40,7 +40,7 @@ namespace FAZN6M_HFT_2022231.Endpoint.Controllers
             return tLogic.TracksFromMusicianBornAfter(year);
         }
         [HttpGet("{length}")]
-        public IEnumerable<Musician> MusiciansWHoHasLongerSongThan(string length)
+        public IEnumerable<Musician> MusiciansWhoHasLongerSongThan(string length)
         {
             return tLogic.MusiciansWHoHasLongerSongThan(length);
         }

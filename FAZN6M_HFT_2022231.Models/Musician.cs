@@ -65,6 +65,10 @@ namespace FAZN6M_HFT_2022231.Models
         {
             return HashCode.Combine(MusicianId, Name, DateOfBirth);
         }
+        public override string ToString()
+        {
+            return MusicianId+" "+Name + " " + Age;
+        }
 
     }
 }
