@@ -68,7 +68,7 @@ namespace FAZN6M_HFT_2022231.Repository
 
             modelBuilder.Entity<Musician>().HasData(new Musician[]
             {
-                new Musician("1#G-eazy#05/24/1989#Oakland#USA#male#2"),
+               new Musician("1#G-eazy#05/24/1989#Oakland#USA#male#2"),
                 new Musician("2#NF#03/30/1991#Gladwin#USA#male#1"),
                 new Musician("3#Dr. Dre#02/18/1965#Compton#USA#male#3"),
                 new Musician("4#Snoop Dogg#10/20/1971#Long Beach#USA#male#3"),
@@ -82,6 +82,7 @@ namespace FAZN6M_HFT_2022231.Repository
                 new Musician("12#David Guetta#11/07/1967#Paris#France#male#7"),
                 new Musician("13#Bruno Mars#10/08/1985#Honolulu#Hawaii#male#5"),
                 new Musician("14#Chris Brown#05/05/1989#Tappahancock#USA#male#2")
+
             });
 
             modelBuilder.Entity<Album>().HasData(new Album[]

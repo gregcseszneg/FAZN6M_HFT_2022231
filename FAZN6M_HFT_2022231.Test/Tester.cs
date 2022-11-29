@@ -215,7 +215,7 @@ namespace FAZN6M_HFT_2022231.Test
             };
 
             //ACT
-            var result = tLogic.TracksFromMusicianBornAfter98();
+           var result = tLogic.TracksFromMusicianBornAfter98();
 
             //ASSERT
             CollectionAssert.AreEqual(shouldbe, result);
