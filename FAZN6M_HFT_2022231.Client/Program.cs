@@ -1,5 +1,6 @@
 ﻿using ConsoleTools;
 using FAZN6M_HFT_2022231.Models;
+using FAZN6M_HFT_2022231.Client;
 using System;
 using System.Collections.Generic;
 using System.Numerics;
@@ -17,7 +18,7 @@ namespace FAZN6M_HFT_2022231.Client
                 Console.WriteLine("Enter musician name:");
                 string name = Console.ReadLine();
                 Console.WriteLine("Enter musician id:");
-                int id=int.Parse(Console.ReadLine());
+                int id = int.Parse(Console.ReadLine());
                 Console.WriteLine("Enter record label id:");
                 int rlId = int.Parse(Console.ReadLine());
                 rest.Post(new Musician()
@@ -27,7 +28,7 @@ namespace FAZN6M_HFT_2022231.Client
                     RecordLabelId = rlId
                 }, "musician");
             }
-            else if(entity =="Track")
+            else if (entity == "Track")
             {
                 Console.WriteLine("Enter track name:");
                 string name = Console.ReadLine();
@@ -40,7 +41,7 @@ namespace FAZN6M_HFT_2022231.Client
                 rest.Post(new Track()
                 {
                     Name = name,
-                    MusicianId=musicianId,
+                    MusicianId = musicianId,
                     TrackId = id,
                     Length = length
                 }, "track");
@@ -58,7 +59,7 @@ namespace FAZN6M_HFT_2022231.Client
                     Name = name,
                     AlbumId = id,
                     MusicianId = id
-                }, "album"); 
+                }, "album");
             }
             else if (entity == "Record label")
             {
@@ -157,7 +158,7 @@ namespace FAZN6M_HFT_2022231.Client
                 }
                 Console.ReadLine();
             }
-            else if(entity == "Track")
+            else if (entity == "Track")
             {
                 List<Track> tracks = rest.Get<Track>("track");
                 foreach (var item in tracks)
@@ -180,7 +181,7 @@ namespace FAZN6M_HFT_2022231.Client
                 List<RecordLabel> recordLabels = rest.Get<RecordLabel>("recordlabel");
                 foreach (var item in recordLabels)
                 {
-                    Console.WriteLine(item.RecordLabelId +" "+ item.Name);
+                    Console.WriteLine(item.RecordLabelId + " " + item.Name);
                 }
                 Console.ReadLine();
             }
