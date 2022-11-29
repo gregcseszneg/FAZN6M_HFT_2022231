@@ -4,6 +4,7 @@ using FAZN6M_HFT_2022231.Client;
 using System;
 using System.Collections.Generic;
 using System.Numerics;
+using System.Xml.Linq;
 
 namespace FAZN6M_HFT_2022231.Client
 {
@@ -187,6 +188,65 @@ namespace FAZN6M_HFT_2022231.Client
                 Console.ReadLine();
             }
         }
+        static void TracksFromMusicianBornAfter()
+        {
+            Console.WriteLine("Born after: ");
+            string year = Console.ReadLine();
+            Console.WriteLine($"Tracks from Musicians who born after {year}:");
+            var data = rest.Get<Track>($"Query/TracksFromMusicianBornAfter/{year}");
+            foreach (var item in data)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.ReadLine();
+        }
+        static void SumOfMusicLengthPerMusician()
+        {
+            Console.WriteLine("Sum of music length per musician:");
+            var data = rest.Get<SumOfMusicLength>("Query/SumOfMusicLengthPerMusician");
+            foreach (var item in data)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.ReadLine();
+        }
+        static void MusiciansWHoHasLongerSongThan()
+        {
+            Console.WriteLine("Longer Than: ");
+            string length = Console.ReadLine();
+            Console.WriteLine($"Musicians who have at least one longer song than {length}:");
+            var data = rest.Get<Musician>($"Query/MusiciansWHoHasLongerSongThan/{length}");
+            foreach (var item in data)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.ReadLine();
+        }
+        static void MusiciansFromRecordLabel()
+        {
+            Console.WriteLine("Choose record label: ");
+            string name = Console.ReadLine();
+            Console.WriteLine($"Musicians from {name}:");
+            string[] correct = name.Split(' ');
+            name = correct[0] + "%20" + correct[1];
+            var data = rest.Get<SumOfMusicLength>($"Query/MusiciansFromRecordLabel/{name}");
+            foreach (var item in data)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.ReadLine();
+        }
+        static void MusicianAverageAgeInTheRecordLabels()
+        {
+            Console.WriteLine("Musicians average age in record labels:");
+            var data = rest.Get<AvgAgeInRecordLabel>("Query/MusicianAverageAgeInTheRecordLabels");
+            foreach (var item in data)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.ReadLine();
+        }
+
         static void Main(string[] args)
         {
             rest = new RestService("http://localhost:34694/", "musician");
@@ -219,12 +279,21 @@ namespace FAZN6M_HFT_2022231.Client
                 .Add("Update", () => Update("Record label"))
                 .Add("Exit", ConsoleMenu.Close);
 
+            var queriesSubMenu = new ConsoleMenu(args, level: 1)
+                .Add("Tracks from musicians who born after...", () => TracksFromMusicianBornAfter())
+                .Add("Sum of music length per musician", () => SumOfMusicLengthPerMusician())
+                .Add("Musicians who has a longer song then...", () => MusiciansWHoHasLongerSongThan())
+                .Add("Musicians from ... record label", () => MusiciansFromRecordLabel())
+                .Add("Musicician average age in the record labels ... record label", () => MusicianAverageAgeInTheRecordLabels())
+                .Add("Exit", ConsoleMenu.Close);
+
 
             var menu = new ConsoleMenu(args, level: 0)
                 .Add("Musicians", () => musicianSubMenu.Show())
                 .Add("Tracks", () => trackSubMenu.Show())
                 .Add("Albums", () => albumSubMenu.Show())
                 .Add("Record labels", () => recordlabelSubMenu.Show())
+                .Add("Queries", () => queriesSubMenu.Show())
                 .Add("Exit", ConsoleMenu.Close);
 
             menu.Show();
