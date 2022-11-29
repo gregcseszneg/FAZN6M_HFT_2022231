@@ -75,7 +75,7 @@ namespace FAZN6M_HFT_2022231.Test
         public void CheckCreate()
         {
             //ARRANGE
-            Musician newMusician = new Musician("6#Juice Wrld#12/02/1998#Chicago#USA#male#");
+            Musician newMusician = new Musician("6#Juice Wrld#12/02/1998#Chicago#USA#male#0");
 
             //ACT
             mLogic.Create(newMusician);
@@ -88,7 +88,7 @@ namespace FAZN6M_HFT_2022231.Test
         public void CheckCreateNameNull()
         {
             //ARRANGE
-            Musician newMusician = new Musician("6##12/02/1998#Chicago#USA#male#");
+            Musician newMusician = new Musician("6##12/02/1998#Chicago#USA#male#0");
 
             //ASSERT
             Assert.That(() => mLogic.Create(newMusician), Throws.TypeOf<ArgumentException>());
@@ -98,7 +98,7 @@ namespace FAZN6M_HFT_2022231.Test
         public void CheckCreateIncorrectAge()
         {
             //ARRANGE
-            Musician newMusician = new Musician("6#Juice Wrld#12/02/1888#Chicago#USA#male#");
+            Musician newMusician = new Musician("6#Juice Wrld#12/02/1888#Chicago#USA#male#0");
 
             //ASSERT
             Assert.That(() => mLogic.Create(newMusician), Throws.TypeOf<ArgumentException>());
@@ -148,7 +148,7 @@ namespace FAZN6M_HFT_2022231.Test
                 new Musician("2#Charlie Puth#12/02/1991#Rumson#USA#male#1"),
                 new Musician("3#Tyga#11/19/1998#Compton#USA#male#3"),
                 new Musician("4#Travis Scott#04/30/1991#Houston#USA#male#3"),
-                new Musician("5#Russ#09/26/1992#Atlanta#USA#male#")
+                new Musician("5#Russ#09/26/1992#Atlanta#USA#male#3")
             }.AsEnumerable();
 
             //ACT
@@ -170,7 +170,7 @@ namespace FAZN6M_HFT_2022231.Test
             };
 
             //ACT
-            var result = mLogic.MusiciansFromDeathRowRecords();
+            var result = mLogic.MusiciansFromRecordLabel("Death Row Records");
 
             //ASSERT
             CollectionAssert.AreEqual(shouldbe, result);
@@ -215,7 +215,7 @@ namespace FAZN6M_HFT_2022231.Test
             };
 
             //ACT
-           var result = tLogic.TracksFromMusicianBornAfter98();
+           var result = tLogic.TracksFromMusicianBornAfter("1998");
 
             //ASSERT
             CollectionAssert.AreEqual(shouldbe, result);
@@ -270,7 +270,7 @@ namespace FAZN6M_HFT_2022231.Test
             }.AsQueryable();
 
             //ACT
-            var result = tLogic.MusiciansWHoHasLongerSongThan200();
+            var result = tLogic.MusiciansWHoHasLongerSongThan("200");
 
             //ASSERT
             CollectionAssert.AreEqual(result, shouldbe);

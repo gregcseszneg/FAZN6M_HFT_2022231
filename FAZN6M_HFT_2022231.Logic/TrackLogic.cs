@@ -40,9 +40,9 @@ namespace FAZN6M_HFT_2022231.Logic
         {
             this.repo.Update(item);
         }
-        public IEnumerable<Track> TracksFromMusicianBornAfter98()
+        public IEnumerable<Track> TracksFromMusicianBornAfter(string year)
         {
-            return repo.ReadAll().Where(t => t.Musician.DateOfBirth.Year > 1998);
+            return repo.ReadAll().Where(t => t.Musician.DateOfBirth.Year > int.Parse(year));
         }
         public IEnumerable<SumOfMusicLength> SumOfMusicLengthPerMusician()
         {
@@ -52,9 +52,9 @@ namespace FAZN6M_HFT_2022231.Logic
                 Length = k.Sum(t => t.Length)
             });
         }
-        public IEnumerable<Musician> MusiciansWHoHasLongerSongThan200()
+        public IEnumerable<Musician> MusiciansWHoHasLongerSongThan(string length)
         {
-            return repo.ReadAll().Where(t => t.Length > 200).Select(m => m.Musician).Distinct();
+            return repo.ReadAll().Where(t => t.Length > int.Parse(length)).Select(m => m.Musician).Distinct();
         }
     }
 }

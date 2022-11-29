@@ -46,9 +46,9 @@ namespace FAZN6M_HFT_2022231.Logic
         {
             this.repo.Update(item);
         }
-        public IEnumerable<Musician> MusiciansFromDeathRowRecords()
+        public IEnumerable<Musician> MusiciansFromRecordLabel(string name)
         {
-            return repo.ReadAll().Where(m => m.RecordLabel.Name == "Death Row Records");
+            return repo.ReadAll().Where(m => m.RecordLabel.Name == name);
         }
         public IEnumerable<AvgAgeInRecordLabel> MusicianAverageAgeInTheRecordLabels()
         {
