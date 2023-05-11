@@ -17,6 +17,9 @@ namespace FAZN6M_HFT_2022231.WpfClient
     public class MainWindowViewModel : ObservableRecipient
     {
         public RestCollection<Musician> Musicians { get; set; }
+        public RestCollection<Album> Albums { get; set; }
+        public RestCollection<Track> Tracks { get; set; }
+        public RestCollection<RecordLabel> RecordLabels { get; set; }
 
         private Musician selectedMusician;
 
@@ -65,6 +68,9 @@ namespace FAZN6M_HFT_2022231.WpfClient
             if(!IsInDesignMode)
             {
                 Musicians = new RestCollection<Musician>("http://localhost:34694/", "musician");
+                Albums = new RestCollection<Album>("http://localhost:34694/", "album");
+                Tracks = new RestCollection<Track>("http://localhost:34694/", "track");
+                RecordLabels = new RestCollection<RecordLabel>("http://localhost:34694/", "recordlabel");
 
                 CreateMusicianCommand = new RelayCommand(() =>
                 {

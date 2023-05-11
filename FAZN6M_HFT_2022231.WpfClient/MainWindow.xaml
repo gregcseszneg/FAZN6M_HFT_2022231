@@ -10,23 +10,31 @@
         <local:MainWindowViewModel/>
     </Window.DataContext>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-        </Grid.ColumnDefinitions>
-        <ListBox ItemsSource="{Binding Musicians}" SelectedItem="{Binding SelectedMusician}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Label Content="{Binding Name}" />
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <StackPanel Grid.Column="1">
-            <Label Content="Name" Background="LightBlue" Padding="10" />
-            <TextBox Text="{Binding SelectedMusician.Name}" Padding="10" Margin="0,0,0,30" />
-            <Button Content="Create Musician" Command="{Binding CreateMusicianCommand}" Margin="10" Padding="10"/>
-            <Button Content="Delete Musician" Command="{Binding DeleteMusicianCommand}" Margin="10" Padding="10"/>
-            <Button Content="Update Musician" Command="{Binding UpdateMusicianCommand}" Margin="10" Padding="10"/>
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="9*" />
+        </Grid.RowDefinitions>
+        <ComboBox x:Name="Selector" SelectionChanged="Selector_SelectionChanged"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <ListBox x:Name="TableList">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Name}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <StackPanel Grid.Column="1">
+                <Label Content="Name" Background="LightBlue" Padding="10" />
+                <TextBox Text="{Binding SelectedMusician.Name}" Padding="10" Margin="0,0,0,30" />
+                <Button Content="Create Musician" Command="{Binding CreateMusicianCommand}" Margin="10" Padding="10"/>
+                <Button Content="Delete Musician" Command="{Binding DeleteMusicianCommand}" Margin="10" Padding="10"/>
+                <Button Content="Update Musician" Command="{Binding UpdateMusicianCommand}" Margin="10" Padding="10"/>
+            </StackPanel>
+        </Grid>
     </Grid>
+    
 </Window>
