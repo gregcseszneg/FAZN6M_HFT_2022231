@@ -14,4 +14,8 @@
     <ProjectReference Include="..\FAZN6M_HFT_2022231.Repository\FAZN6M_HFT_2022231.Repository.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>
