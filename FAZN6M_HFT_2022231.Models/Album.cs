@@ -13,6 +13,7 @@ namespace FAZN6M_HFT_2022231.Models
     {
         [Key]
         [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AlbumId { get; set; }
 
         [Required]
