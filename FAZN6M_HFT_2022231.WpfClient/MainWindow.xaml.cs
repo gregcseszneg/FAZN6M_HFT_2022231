@@ -1,6 +1,7 @@
 ﻿using FAZN6M_HFT_2022231.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -46,7 +47,7 @@ namespace FAZN6M_HFT_2022231.WpfClient
                 TableList.ItemsSource = ((MainWindowViewModel)DataContext).Musicians;
 
                 var properties = typeof(Musician).GetProperties().Where(p => !Attribute.IsDefined(p, typeof(RequiredAttribute)));
-                var reqproperties = typeof(Musician).GetProperties().Where(p => Attribute.IsDefined(p, typeof(RequiredAttribute)));
+                var reqproperties = typeof(Musician).GetProperties().Where(p => Attribute.IsDefined(p, typeof(RequiredAttribute))).Where(p => !Attribute.IsDefined(p, typeof(KeyAttribute)));
 
                 foreach (var prop in reqproperties)
                 {
@@ -72,7 +73,7 @@ namespace FAZN6M_HFT_2022231.WpfClient
                 TableList.ItemsSource = ((MainWindowViewModel)DataContext).Albums;
 
                 var properties = typeof(Album).GetProperties().Where(p => !Attribute.IsDefined(p, typeof(RequiredAttribute)));
-                var reqproperties = typeof(Album).GetProperties().Where(p => Attribute.IsDefined(p, typeof(RequiredAttribute)));
+                var reqproperties = typeof(Album).GetProperties().Where(p => Attribute.IsDefined(p, typeof(RequiredAttribute))).Where(p => !Attribute.IsDefined(p, typeof(KeyAttribute)));
 
                 foreach (var prop in reqproperties)
                 {
@@ -98,7 +99,7 @@ namespace FAZN6M_HFT_2022231.WpfClient
                 TableList.ItemsSource = ((MainWindowViewModel)DataContext).Tracks;
 
                 var properties = typeof(Track).GetProperties().Where(p => !Attribute.IsDefined(p, typeof(RequiredAttribute)));
-                var reqproperties = typeof(Track).GetProperties().Where(p => Attribute.IsDefined(p, typeof(RequiredAttribute)));
+                var reqproperties = typeof(Track).GetProperties().Where(p => Attribute.IsDefined(p, typeof(RequiredAttribute))).Where(p => !Attribute.IsDefined(p, typeof(KeyAttribute)));
 
                 foreach (var prop in reqproperties)
                 {
@@ -124,7 +125,7 @@ namespace FAZN6M_HFT_2022231.WpfClient
                 TableList.ItemsSource = ((MainWindowViewModel)DataContext).RecordLabels;
 
                 var properties = typeof(RecordLabel).GetProperties().Where(p => !Attribute.IsDefined(p, typeof(RequiredAttribute)));
-                var reqproperties = typeof(RecordLabel).GetProperties().Where(p => Attribute.IsDefined(p, typeof(RequiredAttribute)));
+                var reqproperties = typeof(RecordLabel).GetProperties().Where(p => Attribute.IsDefined(p, typeof(RequiredAttribute))).Where(p => !Attribute.IsDefined(p, typeof(KeyAttribute)));
 
                 foreach (var prop in reqproperties)
                 {
