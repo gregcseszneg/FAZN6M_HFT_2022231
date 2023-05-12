@@ -17,19 +17,21 @@
         <ComboBox x:Name="Selector" SelectionChanged="Selector_SelectionChanged"/>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <ListBox x:Name="TableList" SelectedItem="{Binding Selected}" SelectionChanged="TableList_SelectionChanged" >
+            <ListBox x:Name="TableList" SelectedItem="{Binding Selected}" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Label Content="{Binding Name}" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <StackPanel Grid.Column="1">
-                <Label Content="Name" Background="LightBlue" Padding="10" />
-                <TextBox x:Name="tb" Text="{Binding Selected.Name}" Padding="10" Margin="0,0,0,30" />
+            <StackPanel x:Name="DetailStackLabel" Grid.Column="1" />
+            <StackPanel x:Name="DetailStackText" Grid.Column="2" />
+            <StackPanel Grid.Column="3">
                 <Button Content="Create Musician" Command="{Binding CreateCommand}" Margin="10" Padding="10"/>
                 <Button Content="Delete Musician" Command="{Binding DeleteCommand}" Margin="10" Padding="10"/>
                 <Button Content="Update Musician" Command="{Binding UpdateCommand}" Margin="10" Padding="10"/>
