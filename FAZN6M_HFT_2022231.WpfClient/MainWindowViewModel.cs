@@ -174,7 +174,7 @@ namespace FAZN6M_HFT_2022231.WpfClient
                 }
             }
             (Selected as Musician).Gender = gender;
-            if(recordLabelId!="")
+            if(recordLabelId!="" && recordLabelId != "0")
             {
                 var recordLabelIds = RecordLabels.Select(recordLabel => recordLabel.RecordLabelId).ToList();
                 if (recordLabelIds.Contains((int.Parse(recordLabelId))))
@@ -255,7 +255,7 @@ namespace FAZN6M_HFT_2022231.WpfClient
                 return;
             }
 
-            if (albumId !="")
+            if (albumId !="" && albumId!="0")
             {
                 var albumIds = Albums.Select(album => album.AlbumId).ToList();
                 if (albumIds.Contains((int.Parse(albumId))))
@@ -264,7 +264,7 @@ namespace FAZN6M_HFT_2022231.WpfClient
                 }
                 else
                 {
-                    MessageBox.Show("The given MusicianId doesn't exist, please try again with a different number!");
+                    MessageBox.Show("The given AlbumId doesn't exist, please try again with a different number!");
                     Selected = original;
                     canProceed = false;
                     return;
@@ -372,10 +372,10 @@ namespace FAZN6M_HFT_2022231.WpfClient
             
             if(!IsInDesignMode)
             {
-                Musicians = new RestCollection<Musician>("http://localhost:34694/", "musician");
-                Albums = new RestCollection<Album>("http://localhost:34694/", "album");
-                Tracks = new RestCollection<Track>("http://localhost:34694/", "track");
-                RecordLabels = new RestCollection<RecordLabel>("http://localhost:34694/", "recordlabel");
+                Musicians = new RestCollection<Musician>("http://localhost:34694/", "musician", "hub");
+                Albums = new RestCollection<Album>("http://localhost:34694/", "album", "hub");
+                Tracks = new RestCollection<Track>("http://localhost:34694/", "track", "hub");
+                RecordLabels = new RestCollection<RecordLabel>("http://localhost:34694/", "recordlabel", "hub");
 
                 CreateCommand = new RelayCommand(() =>
                 {

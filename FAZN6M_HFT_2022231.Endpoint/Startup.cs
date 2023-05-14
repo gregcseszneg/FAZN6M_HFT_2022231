@@ -1,4 +1,5 @@
 
+using FAZN6M_HFT_2022231.Endpoint.Services;
 using FAZN6M_HFT_2022231.Logic;
 using FAZN6M_HFT_2022231.Models;
 using FAZN6M_HFT_2022231.Repository;
@@ -44,6 +45,8 @@ namespace FAZN6M_HFT_2022231.Endpoint
             services.AddTransient<IAlbumLogic, AlbumLogic>();
             services.AddTransient<IRecordLabelLogic, RecordLabelLogic>();
 
+            services.AddSignalR();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -78,7 +81,7 @@ namespace FAZN6M_HFT_2022231.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

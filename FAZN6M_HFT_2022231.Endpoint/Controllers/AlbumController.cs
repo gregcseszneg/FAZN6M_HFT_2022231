@@ -1,6 +1,8 @@
-﻿using FAZN6M_HFT_2022231.Logic;
+﻿using FAZN6M_HFT_2022231.Endpoint.Services;
+using FAZN6M_HFT_2022231.Logic;
 using FAZN6M_HFT_2022231.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System.Collections.Generic;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,10 +14,11 @@ namespace FAZN6M_HFT_2022231.Endpoint.Controllers
     public class AlbumController : ControllerBase
     {
         IAlbumLogic logic;
-
-        public AlbumController(IAlbumLogic logic)
+        IHubContext<SignalRHub> hub;
+        public AlbumController(IAlbumLogic logic, IHubContext<SignalRHub> hub)
         {
             this.logic = logic;
+            this.hub= hub;
         }
 
         [HttpGet]
@@ -36,6 +39,7 @@ namespace FAZN6M_HFT_2022231.Endpoint.Controllers
         public void Create([FromBody] Album value)
         {
             this.logic.Create(value);
+            this.hub.Clients.All.SendAsync("AlbumCreated", value);
         }
 
 
@@ -43,13 +47,16 @@ namespace FAZN6M_HFT_2022231.Endpoint.Controllers
         public void Update([FromBody] Album value)
         {
             this.logic.Update(value);
+            this.hub.Clients.All.SendAsync("AlbumUpdated", value);
         }
 
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var albumDelete = this.logic.Read(id);
             this.logic.Delete(id);
+            this.hub.Clients.All.SendAsync("AlbumDeleted", albumDelete);
         }
     }
 }
