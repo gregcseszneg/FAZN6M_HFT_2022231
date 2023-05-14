@@ -24,13 +24,28 @@ namespace FAZN6M_HFT_2022231.WpfClient
     public partial class MainWindow : Window
     {
 
-        TextBox Name = new TextBox();
+        TextBox MusicianName = new TextBox();
         TextBox Age = new TextBox();
         TextBox DateOfBirth = new TextBox();
         TextBox HomeTown = new TextBox();
-        TextBox Country = new TextBox();
+        TextBox MusicianCountry = new TextBox();
         TextBox Gender = new TextBox();
-        TextBox RecordLabelId = new TextBox();
+        TextBox MusicianRecordLabelId = new TextBox();
+
+        TextBox TrackName = new TextBox();
+        TextBox Length = new TextBox();
+        TextBox TrackMusicianId = new TextBox();
+        TextBox TrackAlbumId = new TextBox();
+
+        TextBox AlbumName = new TextBox();
+        TextBox AlbumMusicianId = new TextBox();
+        TextBox YearOfRelease = new TextBox();
+        TextBox NumberOfTracks = new TextBox();
+
+        TextBox RecordLabelName = new TextBox();
+        TextBox YearOfFoundation = new TextBox();
+        TextBox RecordLabelCountry = new TextBox();
+        TextBox Headquarters = new TextBox();
 
         public MainWindow()
         {
@@ -43,7 +58,17 @@ namespace FAZN6M_HFT_2022231.WpfClient
             Selector.Items.Add("Non CRUD methods");
 
             Age.PreviewTextInput += TextBox_PreviewTextInput;
-            RecordLabelId.PreviewTextInput += TextBox_PreviewTextInput;
+            MusicianRecordLabelId.PreviewTextInput += TextBox_PreviewTextInput;
+
+            Length.PreviewTextInput += TextBox_PreviewTextInput;
+            TrackMusicianId.PreviewTextInput += TextBox_PreviewTextInput;
+            TrackAlbumId.PreviewTextInput += TextBox_PreviewTextInput;
+
+            AlbumMusicianId.PreviewTextInput += TextBox_PreviewTextInput;
+            YearOfRelease.PreviewTextInput += TextBox_PreviewTextInput;
+            NumberOfTracks.PreviewTextInput += TextBox_PreviewTextInput;
+
+            YearOfFoundation.PreviewTextInput += TextBox_PreviewTextInput;
 
         }
 
@@ -92,18 +117,19 @@ namespace FAZN6M_HFT_2022231.WpfClient
 
                 }
 
-                DetailStackText.Children.Add(Name);
+                DetailStackText.Children.Add(MusicianName);
                 DetailStackText.Children.Add(Age);
                 DetailStackText.Children.Add(DateOfBirth);
                 DetailStackText.Children.Add(HomeTown);
-                DetailStackText.Children.Add(Country);
+                DetailStackText.Children.Add(MusicianCountry);
                 DetailStackText.Children.Add(Gender);
-                DetailStackText.Children.Add(RecordLabelId);
+                DetailStackText.Children.Add(MusicianRecordLabelId);
             }
             else if (Selector.SelectedItem.ToString() == "Albums")
             {
                 ((MainWindowViewModel)DataContext).Selected = new Album();
                 DetailStackLabel.Children.Clear();
+                DetailStackText.Children.Clear();
                 TableList.ItemsSource = ((MainWindowViewModel)DataContext).Albums;
 
                 var properties = typeof(Album).GetProperties().Where(p => !Attribute.IsDefined(p, typeof(RequiredAttribute)) && !p.GetGetMethod().IsVirtual);
@@ -125,11 +151,17 @@ namespace FAZN6M_HFT_2022231.WpfClient
 
                 }
 
+
+                DetailStackText.Children.Add(AlbumName);
+                DetailStackText.Children.Add(AlbumMusicianId);
+                DetailStackText.Children.Add(YearOfRelease);
+                DetailStackText.Children.Add(NumberOfTracks);
             }
             else if (Selector.SelectedItem.ToString() == "Tracks")
             {
                 ((MainWindowViewModel)DataContext).Selected = new Track();
                 DetailStackLabel.Children.Clear();
+                DetailStackText.Children.Clear();
                 TableList.ItemsSource = ((MainWindowViewModel)DataContext).Tracks;
 
                 var properties = typeof(Track).GetProperties().Where(p => !Attribute.IsDefined(p, typeof(RequiredAttribute)) && !p.GetGetMethod().IsVirtual);
@@ -151,11 +183,17 @@ namespace FAZN6M_HFT_2022231.WpfClient
 
                 }
 
+                DetailStackText.Children.Add(TrackName);
+                DetailStackText.Children.Add(Length);
+                DetailStackText.Children.Add(TrackMusicianId);
+                DetailStackText.Children.Add(TrackAlbumId);
+
             }
             else if (Selector.SelectedItem.ToString() == "Record Labels")
             {
                 ((MainWindowViewModel)DataContext).Selected = new RecordLabel();
                 DetailStackLabel.Children.Clear();
+                DetailStackText.Children.Clear();
                 TableList.ItemsSource = ((MainWindowViewModel)DataContext).RecordLabels;
 
                 var properties = typeof(RecordLabel).GetProperties().Where(p => !Attribute.IsDefined(p, typeof(RequiredAttribute)) && !p.GetGetMethod().IsVirtual);
@@ -175,6 +213,12 @@ namespace FAZN6M_HFT_2022231.WpfClient
                     lb.Content = prop.Name + ":";
                     DetailStackLabel.Children.Add(lb);
                 }
+
+                DetailStackText.Children.Add(RecordLabelName);
+                DetailStackText.Children.Add(YearOfFoundation);
+                DetailStackText.Children.Add(RecordLabelCountry);
+                DetailStackText.Children.Add(Headquarters);
+
             }
         }
 
@@ -183,13 +227,35 @@ namespace FAZN6M_HFT_2022231.WpfClient
 
             if (Selector.SelectedItem.ToString() == "Musicians")
             {
-                Name.Text = (((MainWindowViewModel)DataContext).Selected as Musician).Name;
+                
+                MusicianName.Text = (((MainWindowViewModel)DataContext).Selected as Musician).Name;
                 Age.Text = (((MainWindowViewModel)DataContext).Selected as Musician).Age.ToString();
                 DateOfBirth.Text = $"{(((MainWindowViewModel)DataContext).Selected as Musician).DateOfBirth.Year}-{(((MainWindowViewModel)DataContext).Selected as Musician).DateOfBirth.Month}-{(((MainWindowViewModel)DataContext).Selected as Musician).DateOfBirth.Day}";
                 HomeTown.Text = (((MainWindowViewModel)DataContext).Selected as Musician).HomeTown;
-                Country.Text = (((MainWindowViewModel)DataContext).Selected as Musician).Country;
+                MusicianCountry.Text = (((MainWindowViewModel)DataContext).Selected as Musician).Country;
                 Gender.Text = (((MainWindowViewModel)DataContext).Selected as Musician).Gender;
-                RecordLabelId.Text = (((MainWindowViewModel)DataContext).Selected as Musician).RecordLabelId.ToString();
+                MusicianRecordLabelId.Text = (((MainWindowViewModel)DataContext).Selected as Musician).RecordLabelId.ToString();
+            }
+            else if (Selector.SelectedItem.ToString() == "Albums")
+            {
+                AlbumName.Text= (((MainWindowViewModel)DataContext).Selected as Album).Name;
+                AlbumMusicianId.Text = (((MainWindowViewModel)DataContext).Selected as Album).MusicianId.ToString();
+                YearOfRelease.Text = (((MainWindowViewModel)DataContext).Selected as Album).YearOfRelease.ToString();
+                NumberOfTracks.Text = (((MainWindowViewModel)DataContext).Selected as Album).NumberOfTracks.ToString();
+            }
+            else if (Selector.SelectedItem.ToString() == "Tracks")
+            {
+                TrackName.Text = (((MainWindowViewModel)DataContext).Selected as Track).Name;
+                Length.Text = (((MainWindowViewModel)DataContext).Selected as Track).Length.ToString();
+                TrackMusicianId.Text = (((MainWindowViewModel)DataContext).Selected as Track).MusicianId.ToString();
+                TrackAlbumId.Text = (((MainWindowViewModel)DataContext).Selected as Track).AlbumId.ToString();
+            }
+            else if (Selector.SelectedItem.ToString() == "Record Labels")
+            {
+                RecordLabelName.Text = (((MainWindowViewModel)DataContext).Selected as RecordLabel).Name;
+                YearOfFoundation.Text = (((MainWindowViewModel)DataContext).Selected as RecordLabel).YearOfFoundation.ToString();
+                RecordLabelCountry.Text = (((MainWindowViewModel)DataContext).Selected as RecordLabel).Country;
+                Headquarters.Text = (((MainWindowViewModel)DataContext).Selected as RecordLabel).Headquarters;
             }
         }
 
@@ -197,7 +263,19 @@ namespace FAZN6M_HFT_2022231.WpfClient
         {
             if (Selector.SelectedItem.ToString() == "Musicians")
             {
-                ((MainWindowViewModel)DataContext).MusicianConvert(Selector.SelectedItem.ToString(), Name.Text, Age.Text, HomeTown.Text, Country.Text, DateOfBirth.Text, Gender.Text, RecordLabelId.Text);
+                ((MainWindowViewModel)DataContext).MusicianConvert(MusicianName.Text, Age.Text, HomeTown.Text, MusicianCountry.Text, DateOfBirth.Text, Gender.Text, MusicianRecordLabelId.Text);
+            }
+            else if(Selector.SelectedItem.ToString() == "Albums")
+            {
+                ((MainWindowViewModel)DataContext).AlbumConvert(AlbumName.Text, AlbumMusicianId.Text, YearOfRelease.Text, NumberOfTracks.Text);
+            }
+            else if (Selector.SelectedItem.ToString() == "Tracks")
+            {
+                ((MainWindowViewModel)DataContext).TrackConvert(TrackName.Text, Length.Text, TrackMusicianId.Text, TrackAlbumId.Text);
+            }
+            else if (Selector.SelectedItem.ToString() == "Record Labels")
+            {
+                ((MainWindowViewModel)DataContext).RecordLabelConvert(RecordLabelName.Text, YearOfFoundation.Text, RecordLabelCountry.Text, Headquarters.Text);
             }
         }
     }

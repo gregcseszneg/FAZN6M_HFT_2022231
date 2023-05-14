@@ -15,6 +15,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
+using System.Xml.Linq;
 
 namespace FAZN6M_HFT_2022231.WpfClient
 {
@@ -107,41 +108,44 @@ namespace FAZN6M_HFT_2022231.WpfClient
             }
         }
 
-        public void MusicianConvert(string selectedTable, string name, string age, string homeTown, string country, string dateOfBirth, string gender, string recordLabelId)
+        public void MusicianConvert(string name, string age, string homeTown, string country, string dateOfBirth, string gender, string recordLabelId)
         {
-            Musician origanal = (Selected as Musician);
+            
+            Musician original = (Selected as Musician);
             Selected = new Musician();
-            (Selected as Musician).MusicianId = origanal.MusicianId;
-            if(name!="")
+
+                (Selected as Musician).MusicianId = original.MusicianId;
+
+            if (name!="")
             {
                 (Selected as Musician).Name = name;
             }
             else
             {
                 MessageBox.Show("Every Musician has a name, please fill out the name field!");
-                Selected = origanal;
+                Selected = original;
                 canProceed = false;
                 return;
             }
             if(age!="")
             {
-                try
-                {
-                    (Selected as Musician).Age = int.Parse(age);
-                }
-                catch (ArgumentException e)
-                {
-                    MessageBox.Show(e.Message);
-                    Selected = origanal;
-                    canProceed = false;
-                    return;
-                }
+                int converted = int.Parse(age);
+                    if(converted >0 && converted < 120)
+                    {
+                        (Selected as Musician).Age = int.Parse(age);
+                    }
+                    else
+                    {
+                        MessageBox.Show("The given age is invalid, it has to be between 1 and 120, please try again");
+                        Selected = original;
+                        canProceed = false;
+                        return;
+                    }
             }
             else
             {
                 MessageBox.Show("Every Musician has an Age, please fill out the name field!");
             }
-            ;
             (Selected as Musician).HomeTown = homeTown;
             (Selected as Musician).Country = country;
             if(dateOfBirth!="")
@@ -154,8 +158,8 @@ namespace FAZN6M_HFT_2022231.WpfClient
                     }
                     else
                     {
-                        MessageBox.Show("The given birth is not inline with the age of the Musician, please add the correct date!");
-                        Selected = origanal;
+                        MessageBox.Show("The given birth date is not in line with the age of the Musician, please add the correct date!");
+                        Selected = original;
                         canProceed = false;
                         return;
                     }
@@ -164,7 +168,7 @@ namespace FAZN6M_HFT_2022231.WpfClient
                 catch (FormatException e)
                 {
                     MessageBox.Show("The given date format is incorrect, please use this template and try again! (YYYY-MM-DD)");
-                    Selected = origanal;
+                    Selected = original;
                     canProceed = false;
                     return;
                 }
@@ -180,13 +184,177 @@ namespace FAZN6M_HFT_2022231.WpfClient
                 else
                 {
                     MessageBox.Show("The given RecordLabelId doesn't exist, please try again with a different number!");
-                    Selected = origanal;
+                    Selected = original;
                     canProceed = false;
                     return;
                 }
             }
             canProceed = true;
         }
+
+        public void TrackConvert(string name, string length, string musicianId, string albumId)
+        {
+            Track original = (Selected as Track);
+            Selected = new Track();
+
+                (Selected as Track).TrackId = original.TrackId;
+
+            if (name != "")
+            {
+                (Selected as Track).Name = name;
+            }
+            else
+            {
+                MessageBox.Show("Every Track has a name, please fill out the name field!");
+                Selected = original;
+                canProceed = false;
+                return;
+            }
+            try
+            {
+                if(int.Parse(length)>0)
+                {
+                    (Selected as Track).Length = int.Parse(length);
+                }
+                else
+                {
+                    MessageBox.Show("Every Track has a length, please fill out the length field with a number which is bigger then 0!");
+                    Selected = original;
+                    canProceed = false;
+                    return;
+                }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Every Track has a length, please fill out the length field with a number which is bigger then 0!");
+                Selected = original;
+                canProceed = false;
+                return;
+            }
+
+            if (musicianId != "")
+            {
+                var musicianIds = Musicians.Select(musician => musician.MusicianId).ToList();
+                if (musicianIds.Contains((int.Parse(musicianId))))
+                {
+                    (Selected as Track).MusicianId = int.Parse(musicianId);
+                }
+                else
+                {
+                    MessageBox.Show("The given MusicianId doesn't exist, please try again with a different number!");
+                    Selected = original;
+                    canProceed = false;
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Every Track has been written by someone, please fill out the MusicianId field!");
+                Selected = original;
+                canProceed = false;
+                return;
+            }
+
+            if (albumId !="")
+            {
+                var albumIds = Albums.Select(album => album.AlbumId).ToList();
+                if (albumIds.Contains((int.Parse(albumId))))
+                {
+                    (Selected as Track).AlbumId = int.Parse(albumId);
+                }
+                else
+                {
+                    MessageBox.Show("The given MusicianId doesn't exist, please try again with a different number!");
+                    Selected = original;
+                    canProceed = false;
+                    return;
+                }
+            }
+            canProceed = true;
+        }
+        public void AlbumConvert(string name, string musicianId, string yearOfRelease, string numberOfTracks)
+        {
+            Album original = (Selected as Album);
+            Selected = new Album();
+
+                (Selected as Album).AlbumId = original.AlbumId;
+
+
+            if (name != "")
+            {
+                (Selected as Album).Name = name;
+            }
+            else
+            {
+                MessageBox.Show("Every Album has a name, please fill out the name field!");
+                Selected = original;
+                canProceed = false;
+                return;
+            }
+
+            if (musicianId != "")
+            {
+                var musicianIds = Musicians.Select(musician => musician.MusicianId).ToList();
+                if (musicianIds.Contains((int.Parse(musicianId))))
+                {
+                    (Selected as Album).MusicianId = int.Parse(musicianId);
+                }
+                else
+                {
+                    MessageBox.Show("The given MusicianId doesn't exist, please try again with a different number!");
+                    Selected = original;
+                    canProceed = false;
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Every Album has been created by someone, please fill out the MusicianId field!");
+                Selected = original;
+                canProceed = false;
+                return;
+            }
+            if(yearOfRelease!="")
+            {
+                (Selected as Album).YearOfRelease = int.Parse(yearOfRelease);
+            }
+            if(numberOfTracks!="")
+            {
+                (Selected as Album).NumberOfTracks = int.Parse(numberOfTracks);
+            }
+
+            canProceed = true;
+        }
+
+        public void RecordLabelConvert(string name, string yearOfFoundation, string country, string headquarters)
+        {
+            RecordLabel original = (Selected as RecordLabel);
+            Selected = new RecordLabel();
+            (Selected as RecordLabel).RecordLabelId = original.RecordLabelId;
+
+            if (name != "")
+            {
+                (Selected as RecordLabel).Name = name;
+            }
+            else
+            {
+                MessageBox.Show("Every Record label has a name, please fill out the name field!");
+                Selected = original;
+                canProceed = false;
+                return;
+            }
+
+            if (yearOfFoundation != "")
+            {
+                (Selected as RecordLabel).YearOfFoundation = int.Parse(yearOfFoundation);
+            }
+
+            (Selected as RecordLabel).Country=country;
+            (Selected as RecordLabel).Headquarters= headquarters;
+
+            canProceed = true;
+        }
+
         public ICommand CreateCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand UpdateCommand { get; set; }
@@ -229,8 +397,9 @@ namespace FAZN6M_HFT_2022231.WpfClient
                         Tracks.Add(new Track()
                         {
                             Name = (Selected as Track).Name,
-                            Length = 120,
-                            MusicianId=1
+                            Length = (Selected as Track).Length,
+                            MusicianId = (Selected as Track).MusicianId,
+                            AlbumId = (Selected as Track).MusicianId
                         });
                     }
                     else if (Selected is Album)
@@ -238,7 +407,9 @@ namespace FAZN6M_HFT_2022231.WpfClient
                         Albums.Add(new Album()
                         {
                             Name = (Selected as Album).Name,
-                            MusicianId = 1
+                            MusicianId = (Selected as Album).MusicianId,
+                            YearOfRelease = (Selected as Album).YearOfRelease,
+                            NumberOfTracks = (Selected as Album).NumberOfTracks
                         });
                     }
                     else if (Selected is RecordLabel)
@@ -246,6 +417,9 @@ namespace FAZN6M_HFT_2022231.WpfClient
                         RecordLabels.Add(new RecordLabel()
                         {
                             Name = (Selected as RecordLabel).Name,
+                            YearOfFoundation = (Selected as RecordLabel).YearOfFoundation,
+                            Country = (Selected as RecordLabel).Country,
+                            Headquarters = (Selected as RecordLabel).Headquarters
                         });
                     }
 
