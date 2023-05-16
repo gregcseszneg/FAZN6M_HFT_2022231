@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Xml.Linq;
 
@@ -26,6 +27,8 @@ namespace FAZN6M_HFT_2022231.WpfClient
         public RestCollection<Track> Tracks { get; set; }
         public RestCollection<RecordLabel> RecordLabels { get; set; }
 
+        RestService rest;
+
         public bool canProceed = true;
 
         private object selected;
@@ -33,16 +36,16 @@ namespace FAZN6M_HFT_2022231.WpfClient
         public object Selected
         {
             get { return selected; }
-            set 
+            set
             {
                 if (value != null && value is Musician)
                 {
                     Musician help = (value as Musician);
                     selected = new Musician()
                     {
-                        Name=help.Name,
-                        MusicianId=help.MusicianId,
-                        Age=help.Age,
+                        Name = help.Name,
+                        MusicianId = help.MusicianId,
+                        Age = help.Age,
                         Country = help.Country,
                         Tracks = help.Tracks,
                         Albums = help.Albums,
@@ -66,7 +69,7 @@ namespace FAZN6M_HFT_2022231.WpfClient
                         MusicianId = help.MusicianId,
                         Length = help.Length,
                         AlbumId = help.AlbumId,
-                        Musician=help.Musician
+                        Musician = help.Musician
                     };
 
                     OnPropertyChanged(nameof(Selected));
@@ -95,7 +98,7 @@ namespace FAZN6M_HFT_2022231.WpfClient
                     {
                         Name = help.Name,
                         RecordLabelId = help.RecordLabelId,
-                        YearOfFoundation  = help.YearOfFoundation,
+                        YearOfFoundation = help.YearOfFoundation,
                         Country = help.Country,
                         Headquarters = help.Headquarters,
                         Musicians = help.Musicians
@@ -105,18 +108,23 @@ namespace FAZN6M_HFT_2022231.WpfClient
                     OnPropertyChanged(nameof(Selected));
                     (DeleteCommand as RelayCommand).NotifyCanExecuteChanged();
                 }
+                else if (value != null && value is String)
+                {
+                    selected = value;
+                    OnPropertyChanged(nameof(Selected));
+                }
             }
         }
 
         public void MusicianConvert(string name, string age, string homeTown, string country, string dateOfBirth, string gender, string recordLabelId)
         {
-            
+
             Musician original = (Selected as Musician);
             Selected = new Musician();
 
-                (Selected as Musician).MusicianId = original.MusicianId;
+            (Selected as Musician).MusicianId = original.MusicianId;
 
-            if (name!="")
+            if (name != "")
             {
                 (Selected as Musician).Name = name;
             }
@@ -127,20 +135,20 @@ namespace FAZN6M_HFT_2022231.WpfClient
                 canProceed = false;
                 return;
             }
-            if(age!="")
+            if (age != "")
             {
                 int converted = int.Parse(age);
-                    if(converted >0 && converted < 120)
-                    {
-                        (Selected as Musician).Age = int.Parse(age);
-                    }
-                    else
-                    {
-                        MessageBox.Show("The given age is invalid, it has to be between 1 and 120, please try again");
-                        Selected = original;
-                        canProceed = false;
-                        return;
-                    }
+                if (converted > 0 && converted < 120)
+                {
+                    (Selected as Musician).Age = int.Parse(age);
+                }
+                else
+                {
+                    MessageBox.Show("The given age is invalid, it has to be between 1 and 120, please try again");
+                    Selected = original;
+                    canProceed = false;
+                    return;
+                }
             }
             else
             {
@@ -148,11 +156,11 @@ namespace FAZN6M_HFT_2022231.WpfClient
             }
             (Selected as Musician).HomeTown = homeTown;
             (Selected as Musician).Country = country;
-            if(dateOfBirth!="")
+            if (dateOfBirth != "")
             {
                 try
                 {
-                    if((Selected as Musician).Age == DateTime.Today.Year - DateTime.Parse(dateOfBirth).Year)
+                    if ((Selected as Musician).Age == DateTime.Today.Year - DateTime.Parse(dateOfBirth).Year)
                     {
                         (Selected as Musician).DateOfBirth = DateTime.Parse(dateOfBirth);
                     }
@@ -163,7 +171,7 @@ namespace FAZN6M_HFT_2022231.WpfClient
                         canProceed = false;
                         return;
                     }
-                    
+
                 }
                 catch (FormatException e)
                 {
@@ -174,7 +182,7 @@ namespace FAZN6M_HFT_2022231.WpfClient
                 }
             }
             (Selected as Musician).Gender = gender;
-            if(recordLabelId!="" && recordLabelId != "0")
+            if (recordLabelId != "" && recordLabelId != "0")
             {
                 var recordLabelIds = RecordLabels.Select(recordLabel => recordLabel.RecordLabelId).ToList();
                 if (recordLabelIds.Contains((int.Parse(recordLabelId))))
@@ -197,7 +205,7 @@ namespace FAZN6M_HFT_2022231.WpfClient
             Track original = (Selected as Track);
             Selected = new Track();
 
-                (Selected as Track).TrackId = original.TrackId;
+            (Selected as Track).TrackId = original.TrackId;
 
             if (name != "")
             {
@@ -212,7 +220,7 @@ namespace FAZN6M_HFT_2022231.WpfClient
             }
             try
             {
-                if(int.Parse(length)>0)
+                if (int.Parse(length) > 0)
                 {
                     (Selected as Track).Length = int.Parse(length);
                 }
@@ -255,7 +263,7 @@ namespace FAZN6M_HFT_2022231.WpfClient
                 return;
             }
 
-            if (albumId !="" && albumId!="0")
+            if (albumId != "" && albumId != "0")
             {
                 var albumIds = Albums.Select(album => album.AlbumId).ToList();
                 if (albumIds.Contains((int.Parse(albumId))))
@@ -277,7 +285,7 @@ namespace FAZN6M_HFT_2022231.WpfClient
             Album original = (Selected as Album);
             Selected = new Album();
 
-                (Selected as Album).AlbumId = original.AlbumId;
+            (Selected as Album).AlbumId = original.AlbumId;
 
 
             if (name != "")
@@ -314,11 +322,11 @@ namespace FAZN6M_HFT_2022231.WpfClient
                 canProceed = false;
                 return;
             }
-            if(yearOfRelease!="")
+            if (yearOfRelease != "")
             {
                 (Selected as Album).YearOfRelease = int.Parse(yearOfRelease);
             }
-            if(numberOfTracks!="")
+            if (numberOfTracks != "")
             {
                 (Selected as Album).NumberOfTracks = int.Parse(numberOfTracks);
             }
@@ -349,10 +357,56 @@ namespace FAZN6M_HFT_2022231.WpfClient
                 (Selected as RecordLabel).YearOfFoundation = int.Parse(yearOfFoundation);
             }
 
-            (Selected as RecordLabel).Country=country;
-            (Selected as RecordLabel).Headquarters= headquarters;
+            (Selected as RecordLabel).Country = country;
+            (Selected as RecordLabel).Headquarters = headquarters;
 
             canProceed = true;
+        }
+        public List<AvgAgeInRecordLabel> MusicianAverageAgeInTheRecordLabels
+        {
+            get { return rest.Get<AvgAgeInRecordLabel>("query/musicianaverageageintherecordlabels/"); }
+        }
+        public List<Musician> MusiciansFromRecordLabel(string recordLabelName)
+        {
+            if (recordLabelName!="")
+            {
+                return rest.Get<Musician>($"query/musiciansfromrecordlabel/{recordLabelName}/");
+            }
+            else
+            {
+                MessageBox.Show("Please give an existing record label name as parameter to be able to run the query!");
+                return new List<Musician>();
+            }
+            
+        }
+        public List<Track> TracksFromMusicianBornAfter(string year)
+        {
+            if (year!="")
+            {
+                return rest.Get<Track>($"query/TracksFromMusicianBornAfter/{year}/");
+            }
+            else
+            {
+                MessageBox.Show("Please give a year as parameter to be able to run the query!");
+                return new List<Track>();
+            }
+
+        }
+        public List<SumOfMusicLength> SumOfMusicLengthPerMusician
+        {
+            get { return rest.Get<SumOfMusicLength>("query/SumOfMusicLengthPerMusician/"); }
+        }
+        public List<Musician> MusiciansWHoHasLongerSongThan(string length)
+        {
+            if (length!="")
+            {
+                return rest.Get<Musician>($"query/MusiciansWhoHasLongerSongThan/{length}/");
+            }
+            else
+            {
+                MessageBox.Show("Please give a song length in sec as parameter to be able to run the query!");
+                return new List<Musician>();
+            }
         }
 
         public ICommand CreateCommand { get; set; }
@@ -367,15 +421,18 @@ namespace FAZN6M_HFT_2022231.WpfClient
                 return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue;
             }
         }
+        
         public MainWindowViewModel()
         {
             
             if(!IsInDesignMode)
             {
+                rest = new RestService("http://localhost:34694/");
                 Musicians = new RestCollection<Musician>("http://localhost:34694/", "musician", "hub");
                 Albums = new RestCollection<Album>("http://localhost:34694/", "album", "hub");
                 Tracks = new RestCollection<Track>("http://localhost:34694/", "track", "hub");
                 RecordLabels = new RestCollection<RecordLabel>("http://localhost:34694/", "recordlabel", "hub");
+ 
 
                 CreateCommand = new RelayCommand(() =>
                 {
