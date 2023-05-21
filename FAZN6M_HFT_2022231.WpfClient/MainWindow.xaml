@@ -19,7 +19,10 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="9*" />
         </Grid.RowDefinitions>
-        <ComboBox x:Name="Selector" SelectionChanged="Selector_SelectionChanged"/>
+        <StackPanel Grid.Row="0">
+            <Label  Content="Please select a table:"  HorizontalAlignment="Center" FontWeight="Bold"/>
+            <ComboBox x:Name="Selector" SelectionChanged="Selector_SelectionChanged"/>
+        </StackPanel>
         <Grid x:Name="LowerGrid" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*" />
