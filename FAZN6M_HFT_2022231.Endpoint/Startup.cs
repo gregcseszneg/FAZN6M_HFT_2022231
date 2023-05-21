@@ -73,6 +73,11 @@ namespace FAZN6M_HFT_2022231.Endpoint
                 await context.Response.WriteAsJsonAsync(response);
             }));
 
+            app.UseCors(c => c
+                .AllowCredentials()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .WithOrigins("http://localhost:23103"));
 
             app.UseRouting();
 

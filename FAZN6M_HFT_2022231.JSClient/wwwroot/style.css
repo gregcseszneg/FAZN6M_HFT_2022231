@@ -1,0 +1,42 @@
+table{
+    width: 100%;
+}
+
+table, th, td{
+    border: 1px solid black;
+}
+table{
+
+    border-collapse: collapse;
+}
+
+th, td{
+    padding: 5px;
+}
+
+th{
+    background-color: lightblue;
+}
+#formdiv{
+    display:flex;
+    flex-direction: column;
+    margin-bottom:10px;
+}
+
+#formdiv label, button, input{
+    margin: 10 px;
+    padding: 10 px;
+}
+
+#formdiv label{
+    font-weight: bolder;
+}
+
+#commandsDiv button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.selected {
+    background-color: #D3D3D3;
+}

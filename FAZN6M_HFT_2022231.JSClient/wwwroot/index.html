@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Musician UI</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>Musician Catalog</h1>
+    <div id="mainDiv">
+        <div id="formdiv">
+            <label>Musician Name (Required)</label>
+            <input type="text" id="musicianname" />
+        </div>
+        <div id="formdiv">
+            <label>Date of Birth</label>
+            <input type="text" id="dateofbirth" />
+        </div>
+        <div id="formdiv">
+            <label>Age (Required)</label>
+            <input type="text" id="age" />
+        </div>
+        <div id="formdiv">
+            <label>Gender</label>
+            <input type="text" id="gender" />
+        </div>
+        <div id="formdiv">
+            <label>Country</label>
+            <input type="text" id="country" />
+        </div>
+        <div id="formdiv">
+            <label>Home Town</label>
+            <input type="text" id="hometown" />
+        </div>
+        <div id="formdiv">
+            <label>Record Label ID</label>
+            <input type="text" id="recordlabelid" />
+        </div>
+        <div id="commandsDiv">
+            <button type="button" onclick="create()">Add</button>
+            <button type="button" onclick="remove()">Delete</button>
+            <button type="button" onclick="update()">Update</button>
+        </div>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Musician ID</th>
+                <th>Name</th>
+                <th>Date of birth</th>
+                <th>Age </th>
+                <th>Gender</th>
+                <th>Country</th>
+                <th>Home town</th>
+                <th>Record Label ID</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+            <tr>
+            </tr>
+        </tbody>
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
