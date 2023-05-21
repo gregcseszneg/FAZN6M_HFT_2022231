@@ -40,3 +40,28 @@ th{
 .selected {
     background-color: #D3D3D3;
 }
+
+#page-switcher {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.page-button {
+    flex-grow: 1; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    padding: 10px 20px;
+    background-color: lightblue;
+    border: 2px solid white;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+
+    .page-button:hover {
+        background-color: darkblue;
+        color: white;
+    }

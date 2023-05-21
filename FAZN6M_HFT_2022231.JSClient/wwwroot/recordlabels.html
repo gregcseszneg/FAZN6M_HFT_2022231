@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Record Label UI</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div id="page-switcher">
+        <a href="musicians.html" class="page-button">Musicians</a>
+        <a href="tracks.html" class="page-button">Tracks</a>
+        <a href="albums.html" class="page-button">Albums</a>
+     </div>
+        <h1>Record Label Catalog</h1>
+        <div id="mainDiv">
+            <div id="formdiv">
+                <label>Record label name (Required)</label>
+                <input type="text" id="recordlabelname" />
+            </div>
+            <div id="formdiv">
+                <label>Year of foundation</label>
+                <input type="text" id="yearoffoundation" />
+            </div>
+            <div id="formdiv">
+                <label>Country</label>
+                <input type="text" id="country" />
+            </div>
+            <div id="formdiv">
+                <label>Headquarters</label>
+                <input type="text" id="headquarters" />
+            </div>
+            <div id="commandsDiv">
+                <button type="button" onclick="create()">Add</button>
+                <button type="button" onclick="remove()">Delete</button>
+                <button type="button" onclick="update()">Update</button>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Record label ID</th>
+                    <th>Record label name</th>
+                    <th>Year of foundation</th>
+                    <th>Country</th>
+                    <th>Headquarters</th>
+                </tr>
+            </thead>
+            <tbody id="resultarea">
+                <tr>
+                </tr>
+            </tbody>
+        </table>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+        <script src="recordlabels.js"></script>
+</body>
+</html>

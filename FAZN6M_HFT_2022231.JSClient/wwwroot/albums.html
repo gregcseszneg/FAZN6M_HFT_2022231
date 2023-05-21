@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Album UI</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <div id="page-switcher">
+        <a href="musicians.html" class="page-button">Musicians</a>
+        <a href="tracks.html" class="page-button">Tracks</a>
+        <a href="recordlabels.html" class="page-button">Record Labels</a>
+    </div>
+
+    <h1>Album Catalog</h1>
+    <div id="mainDiv">
+        <div id="formdiv">
+            <label>Track Name (Required)</label>
+            <input type="text" id="albumname" />
+        </div>
+        <div id="formdiv">
+            <label>Musician ID (Required)</label>
+            <input type="text" id="musicianid" />
+        </div>
+        <div id="formdiv">
+            <label>Year of release</label>
+            <input type="text" id="yearofrelease" />
+        </div>
+        <div id="formdiv">
+            <label>Number of tracks</label>
+            <input type="text" id="numberoftracks" />
+        </div>
+        <div id="commandsDiv">
+            <button type="button" onclick="create()">Add</button>
+            <button type="button" onclick="remove()">Delete</button>
+            <button type="button" onclick="update()">Update</button>
+        </div>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Album ID</th>
+                <th>Album Name</th>
+                <th>Musician ID</th>
+                <th>Year of release</th>
+                <th>Number of tracks</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+            <tr>
+            </tr>
+        </tbody>
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="albums.js"></script>
+</body>
+</html>

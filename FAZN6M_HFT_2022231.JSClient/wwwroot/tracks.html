@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Track UI</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div id="page-switcher">
+        <a href="musicians.html" class="page-button">Musicians</a>
+        <a href="albums.html" class="page-button">Albums</a>
+        <a href="recordlabels.html" class="page-button">Record Labels</a>
+    </div>
+        <h1>Track Catalog</h1>
+        <div id="mainDiv">
+            <div id="formdiv">
+                <label>Track Name (Required)</label>
+                <input type="text" id="trackname" />
+            </div>
+            <div id="formdiv">
+                <label>Length (Required)</label>
+                <input type="text" id="length" />
+            </div>
+            <div id="formdiv">
+                <label>Musician ID (Required)</label>
+                <input type="text" id="musicianid" />
+            </div>
+            <div id="formdiv">
+                <label>Album ID</label>
+                <input type="text" id="albumid" />
+            </div>
+            <div id="commandsDiv">
+                <button type="button" onclick="create()">Add</button>
+                <button type="button" onclick="remove()">Delete</button>
+                <button type="button" onclick="update()">Update</button>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Track ID</th>
+                    <th>Track Name</th>
+                    <th>Length</th>
+                    <th>Musician ID</th>
+                    <th>Album ID</th>
+                </tr>
+            </thead>
+            <tbody id="resultarea">
+                <tr>
+                </tr>
+            </tbody>
+        </table>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+        <script src="tracks.js"></script>
+</body>
+</html>

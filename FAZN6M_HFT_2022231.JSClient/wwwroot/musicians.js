@@ -102,7 +102,7 @@ function display() {
     })
 }
 
-function remove(id) {
+function remove() {
 
     let selectedRow = document.getElementById('resultarea').querySelector('.selected');
 
