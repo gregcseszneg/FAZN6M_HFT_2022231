@@ -11,6 +11,7 @@
         <a href="musicians.html" class="page-button">Musicians</a>
         <a href="tracks.html" class="page-button">Tracks</a>
         <a href="recordlabels.html" class="page-button">Record Labels</a>
+        <a href="noncruds.html" class="page-button">Non Cruds</a>
     </div>
 
     <h1>Album Catalog</h1>
@@ -21,7 +22,7 @@
         </div>
         <div id="formdiv">
             <label>Musician ID (Required)</label>
-            <input type="text" id="musicianid" />
+            <input type="number"  id="musicianid" />
         </div>
         <div id="formdiv">
             <label>Year of release</label>
@@ -29,7 +30,7 @@
         </div>
         <div id="formdiv">
             <label>Number of tracks</label>
-            <input type="text" id="numberoftracks" />
+            <input type="number"  id="numberoftracks" />
         </div>
         <div id="commandsDiv">
             <button type="button" onclick="create()">Add</button>
@@ -54,6 +55,7 @@
     </table>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+
     <script src="albums.js"></script>
 </body>
 </html>

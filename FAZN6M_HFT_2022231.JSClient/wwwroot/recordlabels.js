@@ -109,7 +109,6 @@ function remove() {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-
                 return response;
             })
             .then(data => {
@@ -118,6 +117,7 @@ function remove() {
             })
             .catch((error) => {
                 console.error('Error:', error);
+
             });
     } else {
         console.error('No row selected'); //give an error message if no row is selected
@@ -148,7 +148,6 @@ function create() { //get the given values from the inputs and parse Them
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-
             return response;
         })
         .then(data => {
@@ -159,6 +158,7 @@ function create() { //get the given values from the inputs and parse Them
             console.error('Error:', error);
 
         });
+
 }
 
 function update() {
@@ -186,7 +186,7 @@ function update() {
                 headquarters: headquarters
             }),
         })
-            .then(response => {
+            .then(response => { //check the response
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -194,11 +194,13 @@ function update() {
             })
             .then(data => {
                 console.log('Success:', data);
-                getdata();
+                getdata(); //refresh the document
             })
             .catch((error) => {
                 console.error('Error:', error);
+
             });
+    
     } else {
         console.error('No row selected');
     }

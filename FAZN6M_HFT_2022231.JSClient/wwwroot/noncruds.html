@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Non Crud UI</title>
+</head>
+<body>
+    <div id="page-switcher">
+        <a href="musicians.html" class="page-button">Musicians</a>
+        <a href="tracks.html" class="page-button">Tracks</a>
+        <a href="albums.html" class="page-button">Albums</a>
+        <a href="recordlabels.html" class="page-button">Record Labels</a>
+    </div>
+    <h1>Non Crud Methods</h1>
+    <div class="container">
+        <div class="noncrudcolumn">
+            <input type="text" id="recordlabelname" placeholder="Search for musicians from the a record label! Record label name:" />
+            <button type="button" onclick="fromRecordLabel()">Execute</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody id="fromrecordlabelresult">
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="noncrudcolumn">
+            <label>Avarage age in record labels</label>
+            <button type="button" onclick="avgAge()">Execute</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Record label name</th>
+                        <th>Avarage age</th>
+                    </tr>
+                </thead>
+                <tbody id="avgageresult">
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="noncrudcolumn">
+            <input type="number" id="length" placeholder="Search for musicians who has/have longer song than x sec:" />
+            <button type="button" onclick="hasLongerSongsThan()">Execute</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody id="haslongersongresult">
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="noncrudcolumn">
+            <input type="number"  id="yearofbirth" placeholder="Search for tracks from musicians how born after:" />
+            <button type="button" onclick=" tracksFromMusicians()">Execute</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Musician Id</th>
+                    </tr>
+                </thead>
+                <tbody id="bornafterresult">
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="noncrudcolumn">
+            <label>Sum of music length per musician in sec:</label>
+            <button type="button" onclick=" sumOfMusic()">Execute</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Sum of length</th>
+                    </tr>
+                </thead>
+                <tbody id="sumoflengthresult">
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="noncruds.js"></script>
+
+</body>
+</html>

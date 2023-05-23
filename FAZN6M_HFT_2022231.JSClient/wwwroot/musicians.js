@@ -1,4 +1,5 @@
 ﻿let musicians = [];
+let foundMusicians = [];
 let connection = null;
 getdata();
 setupSignalR();
@@ -102,6 +103,7 @@ function display() {
     })
 }
 
+
 function remove() {
 
     let selectedRow = document.getElementById('resultarea').querySelector('.selected');
@@ -168,7 +170,6 @@ function create() { //get the given values from the inputs and parse Them
             if (!response.ok) { 
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-
             return response;
         })
         .then(data => {
@@ -177,7 +178,7 @@ function create() { //get the given values from the inputs and parse Them
         })
         .catch((error) => {
             console.error('Error:', error);
-            
+
         });
 }
 
