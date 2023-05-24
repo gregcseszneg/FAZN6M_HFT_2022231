@@ -126,10 +126,21 @@ function remove() {
 }
 
 function create() { //get the given values from the inputs and parse Them
-    let albumName = document.getElementById('albumname').value;
-    let musicianId = 0;
+    let albumName;
+    if (document.getElementById('albumname').value != "") {
+        albumName = document.getElementById('albumname').value;
+    }
+    else {
+        alert("Every album has a name, please fill out the name field!")
+        return;
+    }
+    let musicianId;
     if (document.getElementById('musicianid').value !== "") {
         musicianId = parseInt(document.getElementById('musicianid').value);
+    }
+    else {
+        alert("Every album has been made by someone, please add an ID!");
+        return;
     }
     let yearOfRelease = 0;
     if (document.getElementById('yearofrelease').value !== "") {
@@ -172,10 +183,21 @@ function update() {
     let id = parseInt(selectedRow.dataset.albumId);
 
     if (selectedRow) {
-        let albumName = document.getElementById('albumname').value;
-        let musicianId = 0;
+        let albumName;
+        if (document.getElementById('albumname').value != "") {
+            albumName = document.getElementById('albumname').value;
+        }
+        else {
+            alert("Every album has a name, please fill out the name field!")
+            return;
+        }
+        let musicianId;
         if (document.getElementById('musicianid').value !== "") {
             musicianId = parseInt(document.getElementById('musicianid').value);
+        }
+        else {
+            alert("Every album has been made by someone, please add an ID!");
+            return;
         }
         let yearOfRelease = 0;
         if (document.getElementById('yearofrelease').value !== "") {

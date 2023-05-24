@@ -126,14 +126,30 @@ function remove() {
 }
 
 function create() { //get the given values from the inputs and parse Them
-    let trackName = document.getElementById('trackname').value;
-    let length = 0;
+    let trackName;
+    if (document.getElementById('trackname').value !="") {
+
+        trackName = document.getElementById('trackname').value;
+    }
+    else {
+        alert("Every track has a name, please fill out the name!")
+        return;
+    }
+    let length;
     if (document.getElementById('length').value !== "") {
         length = parseInt(document.getElementById('length').value);
     }
-    let musicianId = 0;
+    else {
+        alert("Every track has a length, please eneter an intiger!")
+        return;
+    }
+    let musicianId;
     if (document.getElementById('musicianid').value !== "") {
         musicianId = parseInt(document.getElementById('musicianid').value);
+    }
+    else {
+        alert("Every track has a musician, please eneter an id!")
+        return;
     }
     let albumId = 0;
     if (document.getElementById('albumid').value !== "") {
@@ -171,14 +187,30 @@ function update() {
     let id = parseInt(selectedRow.dataset.trackId);
 
     if (selectedRow) {
-        let trackName = document.getElementById('trackname').value;
-        let length = 0;
+        let trackName;
+        if (document.getElementById('trackname').value != "") {
+
+            trackName = document.getElementById('trackname').value;
+        }
+        else {
+            alert("Every track has a name, please fill out the name!")
+            return;
+        }
+        let length;
         if (document.getElementById('length').value !== "") {
             length = parseInt(document.getElementById('length').value);
         }
-        let musicianId = 0;
+        else {
+            alert("Every track has a length, please eneter an intiger!")
+            return;
+        }
+        let musicianId;
         if (document.getElementById('musicianid').value !== "") {
             musicianId = parseInt(document.getElementById('musicianid').value);
+        }
+        else {
+            alert("Every track has a musician, please eneter an id!")
+            return;
         }
         let albumId = 0;
         if (document.getElementById('albumid').value !== "") {

@@ -126,7 +126,14 @@ function remove() {
 }
 
 function create() { //get the given values from the inputs and parse Them
-    let recordLabelName = document.getElementById('recordlabelname').value;
+    let recordLabelName;
+    if (document.getElementById('recordlabelname').value != "") {
+        recordLabelName = document.getElementById('recordlabelname').value;
+    }
+    else {
+        alert("Every record label has a name, please fill out the name field!");
+        return;
+    }
     let yearOfFoundation = 0;
     if (document.getElementById('yearoffoundation').value !== "") {
         yearOfFoundation = parseInt(document.getElementById('yearoffoundation').value);
@@ -166,7 +173,14 @@ function update() {
     let id = parseInt(selectedRow.dataset.recordlabelId);
 
     if (selectedRow) {
-        let recordLabelName = document.getElementById('recordlabelname').value;
+        let recordLabelName;
+        if (document.getElementById('recordlabelname').value != "") {
+            recordLabelName = document.getElementById('recordlabelname').value;
+        }
+        else {
+            alert("Every record label has a name, please fill out the name field!");
+            return;
+        }
         let yearOfFoundation = 0;
         if (document.getElementById('yearoffoundation').value !== "") {
             yearOfFoundation = parseInt(document.getElementById('yearoffoundation').value);

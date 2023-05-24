@@ -95,7 +95,7 @@ function fromRecordLabel() {
 }
 
 function hasLongerSongsThan() {
-    var length = document.getElementById("length").value;
+    var length = Math.round(parseFloat(document.getElementById("length").value));
 
     if (length !== "") {
         fetch(`http://localhost:34694/query/MusiciansWhoHasLongerSongThan/${length}/`)
@@ -145,7 +145,7 @@ function avgAge() {
 }
 function tracksFromMusicians() {
 
-    let year = document.getElementById('yearofbirth').value;
+    let year = Math.round(parseFloat(document.getElementById('yearofbirth').value));
     if (year !== "") {
         fetch(`http://localhost:34694/query/TracksFromMusicianBornAfter/${year}/`)
             .then(response => { //check the response

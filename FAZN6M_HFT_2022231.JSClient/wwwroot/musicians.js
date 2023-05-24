@@ -1,6 +1,7 @@
 ﻿let musicians = [];
 let foundMusicians = [];
 let connection = null;
+let recordLabelIds = [];
 getdata();
 setupSignalR();
 
@@ -138,13 +139,35 @@ function remove() {
 }
 
 function create() { //get the given values from the inputs and parse Them
-    let musicianName = document.getElementById('musicianname').value;
+    let musicianName;
+    if (document.getElementById('musicianname').value != "") {
+
+        musicianName = document.getElementById('musicianname').value;
+    }
+    else {
+        alert("Every musician has a name, please fill out the name!")
+        return;
+    }
+    
     let dateOfBirth = new Date("0001-01-01");
     if (document.getElementById('dateofbirth').value !== "") {
-        dateOfBirth = new Date(document.getElementById('dateofbirth').value);
+        dateOfBirth = tryParseDate((document.getElementById('dateofbirth').value));
     }
-    console.log(dateOfBirth);
-    let age = parseInt(document.getElementById('age').value);
+    let age;
+    if (document.getElementById('age').value != "") {
+        if (parseInt(document.getElementById('age').value) < 120 && parseInt(document.getElementById('age').value) >= 1) {
+            age = parseInt(document.getElementById('age').value);
+        }
+        else {
+            alert("The age must be a number between 1 and 120");
+            return;
+        }
+    }
+    else {
+        alert("Everybody has an age, please fill out the form with an age between 1 and 120");
+        return;
+    }
+   
     let gender = document.getElementById('gender').value;
     let country = document.getElementById('country').value;
     let homeTown = document.getElementById('hometown').value;
@@ -188,12 +211,33 @@ function update() {
     if (selectedRow) {
         let id = parseInt(selectedRow.dataset.musicianId);
 
-        let musicianName = document.getElementById('musicianname').value;
+        let musicianName;
+        if (document.getElementById('musicianname').value != "") {
+
+            musicianName = document.getElementById('musicianname').value;
+        }
+        else {
+            alert("Every musician has a name, please fill out the name!")
+            return;
+        }
         let dateOfBirth = new Date("0001-01-01");
         if (document.getElementById('dateofbirth').value !== "") {
-            dateOfBirth = new Date(document.getElementById('dateofbirth').value);
+            dateOfBirth = tryParseDate((document.getElementById('dateofbirth').value));
         }
-        let age = parseInt(document.getElementById('age').value);
+        let age;
+        if (document.getElementById('age').value != "") {
+            if (parseInt(document.getElementById('age').value) < 120 && parseInt(document.getElementById('age').value) >= 1) {
+                age = parseInt(document.getElementById('age').value);
+            }
+            else {
+                alert("The age must be a number between 1 and 120");
+                return;
+            }
+        }
+        else {
+            alert("Everybody has an age, please fill out the form with an age between 1 and 120");
+            return;
+        }
         let gender = document.getElementById('gender').value;
         let country = document.getElementById('country').value;
         let homeTown = document.getElementById('hometown').value;
@@ -231,5 +275,42 @@ function update() {
             });
     } else {
         console.error('No row selected');
+    }
+}
+
+function tryParseDate(dateString) {
+    let date = new Date(dateString);
+    if(isNaN(date))
+    {
+        alert("date format is incorrect, it should be YYYY-MM-DD, please try again")
+        return;
+    } else {
+        return date;
+    }
+}
+
+function checkRecordLabel(id) {
+    let parsed = parseInt(id);
+    if (!isNaN(parsed)) {
+        fetch('http://localhost:34694/recordlabel')
+            .then(x => x.json())
+            .then(y => {
+                recordLabelIds = y;
+            });
+        console.log(recordLabelIds);
+        recordLabelIds.forEach(t => {
+            recordLabelIds += t.recordLabelId;
+        }); 
+        if (recordLabelIds.includes(parsed)) {
+            return parsed;
+        }
+        else {
+            alert("The given Record Label ID doesn't exist! Please try another one!")
+            return;
+        }
+    }
+    else {
+        alert("the record label id has to be an intiger!");
+        return;
     }
 }
